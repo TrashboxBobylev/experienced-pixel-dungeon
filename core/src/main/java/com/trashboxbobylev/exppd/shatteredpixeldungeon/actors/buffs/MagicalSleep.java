@@ -23,10 +23,12 @@ package com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs;
 
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.Char;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.hero.Hero;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.mobs.DepthyMob;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.mobs.Mob;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.messages.Messages;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.ui.BuffIndicator;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.utils.GLog;
+import com.watabou.utils.Random;
 
 public class MagicalSleep extends Buff {
 
@@ -61,6 +63,10 @@ public class MagicalSleep extends Buff {
 			detach();
 			return true;
 		}
+        if (target instanceof DepthyMob && (((Mob) target).state != ((Mob) target).SLEEPING) || Random.Float() < 0.25f){
+            detach();
+            return true;
+        }
 		if (target instanceof Hero) {
 			target.HP = Math.min(target.HP+1, target.HT);
 			((Hero) target).resting = true;

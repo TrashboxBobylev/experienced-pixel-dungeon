@@ -34,18 +34,14 @@ import com.watabou.noosa.Camera;
 import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
 
-public class Shaman extends Mob implements Callback {
+public class ShamanSupreme extends DepthyMob implements Callback {
 
-	private static final float TIME_TO_ZAP	= 1f;
+	private static final float TIME_TO_ZAP	= 0.1f;
 	
 	{
 		spriteClass = ShamanSprite.class;
 		
-		HP = HT = 18;
-		defenseSkill = 8;
-		
-		EXP = 6;
-		maxLvl = 14;
+		HP = HT = 9000;
 		
 		loot = Generator.Category.SCROLL;
 		lootChance = 0.33f;
@@ -55,17 +51,12 @@ public class Shaman extends Mob implements Callback {
 	
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( 2, 8 );
+		return Random.NormalIntRange( 80, 120 );
 	}
-	
-	@Override
-	public int attackSkill( Char target ) {
-		return 11;
-	}
-	
+
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(0, 4);
+		return Random.NormalIntRange(100, 140);
 	}
 	
 	@Override
@@ -115,6 +106,11 @@ public class Shaman extends Mob implements Callback {
 			return !visible;
 		}
 	}
+
+    @Override
+    protected float attackDelay() {
+        return super.attackDelay()*0.2f;
+    }
 	
 	@Override
 	public void call() {

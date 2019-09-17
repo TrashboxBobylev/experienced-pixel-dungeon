@@ -25,8 +25,10 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.Dungeon;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.Char;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.blobs.Blob;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.blobs.Fire;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.blobs.ToxicGas;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Buff;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Burning;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Corrosion;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Poison;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.mobs.npcs.Ghost;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.Generator;
@@ -38,33 +40,26 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.sprites.GnollTricksterSpr
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
-public class GnollTrickster extends Gnoll {
+public class GnollSupreme extends DepthyMob {
 
 	{
 		spriteClass = GnollTricksterSprite.class;
 
-		HP = HT = 20;
-		defenseSkill = 5;
-
-		EXP = 5;
-
-		state = WANDERING;
+		HP = HT = 4500;
 
 		//at half quantity, see createLoot()
 		loot = Generator.Category.MISSILE;
 		lootChance = 1f;
-
-		properties.add(Property.MINIBOSS);
 	}
 
 	private int combo = 0;
 
-	@Override
-	public int attackSkill( Char target ) {
-		return 16;
-	}
+    @Override
+    protected float attackDelay() {
+        return super.attackDelay()*0.1f;
+    }
 
-	@Override
+    @Override
 	protected boolean canAttack( Char enemy ) {
 		Ballistica attack = new Ballistica( pos, enemy.pos, Ballistica.PROJECTILE);
 		return !Dungeon.level.adjacent(pos, enemy.pos) && attack.collisionPos == enemy.pos;
@@ -82,15 +77,20 @@ public class GnollTrickster extends Gnoll {
 			if (effect >=6 && enemy.buff(Burning.class) == null){
 
 				if (Dungeon.level.flamable[enemy.pos])
-					GameScene.add(Blob.seed(enemy.pos, 4, Fire.class));
+					GameScene.add(Blob.seed(enemy.pos, 4, ToxicGas.class));
 				Buff.affect(enemy, Burning.class).reignite( enemy );
 
 			} else
-				Buff.affect( enemy, Poison.class).set((effect-2) );
+				Buff.affect( enemy, Corrosion.class).set(effect+2, damage);
 
 		}
 		return damage;
 	}
+
+    @Override
+    public int damageRoll() {
+        return Random.NormalIntRange( 80, 120 );
+    }
 
 	@Override
 	protected boolean getCloser( int target ) {
@@ -109,13 +109,6 @@ public class GnollTrickster extends Gnoll {
 		drop.quantity((drop.quantity()+1)/2);
 		return drop;
 	}
-	
-	@Override
-	public void die( Object cause ) {
-		super.die( cause );
-
-		Ghost.Quest.process();
-	}
 
 	private static final String COMBO = "combo";
 
@@ -130,5 +123,10 @@ public class GnollTrickster extends Gnoll {
 		super.restoreFromBundle( bundle );
 		combo = bundle.getInt( COMBO );
 	}
+
+    @Override
+    public int drRoll() {
+        return Random.NormalIntRange(40, 70);
+    }
 
 }

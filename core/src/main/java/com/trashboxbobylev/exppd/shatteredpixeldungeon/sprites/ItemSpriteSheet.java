@@ -256,6 +256,20 @@ public class ItemSpriteSheet {
 		assignItemRect(GAUNTLETS,   13, 15);
 	}
 
+    private static final int WEP_TIER6      =                               xy(9, 9);
+    public static final int SWIFTSWORD      = WEP_TIER6+0;
+    public static final int SWITCH_DAGGER        = WEP_TIER6+1;
+    public static final int HALBERD           = WEP_TIER6+2;
+    public static final int TWIN_BLADES    = WEP_TIER6+3;
+    public static final int JJANGO            = WEP_TIER6+4;
+    static{
+        assignItemRect(SWIFTSWORD,      16, 16);
+        assignItemRect(SWITCH_DAGGER,        11, 12);
+        assignItemRect(HALBERD,           16, 16);
+        assignItemRect(TWIN_BLADES,    16, 16);
+        assignItemRect(JJANGO,            16, 16);
+    }
+
 	                                                                                    //8 free slots
 
 	private static final int MISSILE_WEP    =                               xy(1, 10);  //16 slots. 3 per tier + boomerang

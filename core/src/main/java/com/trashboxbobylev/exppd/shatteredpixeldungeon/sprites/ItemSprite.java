@@ -28,6 +28,7 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.effects.Speck;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.Gold;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.Heap;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.Item;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.rings.RingOfWealth;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.levels.Terrain;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.scenes.GameScene;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.tiles.DungeonTilemap;
@@ -159,8 +160,11 @@ public class ItemSprite extends MovieClip {
 		
 		speed.set( 0, -100 );
 		acc.set(0, -speed.y / DROP_INTERVAL * 2);
-		
-		if (heap != null && heap.seen && heap.peek() instanceof Gold) {
+
+        RingOfWealth.Wealth buff = Dungeon.hero.buff(RingOfWealth.Wealth.class);
+        boolean coiny = buff == null || buff.level() >= 20;
+
+		if (heap != null && heap.seen && heap.peek() instanceof Gold && coiny) {
 			CellEmitter.center( heap.pos ).burst( Speck.factory( Speck.COIN ), 5 );
 			Sample.INSTANCE.play( Assets.SND_GOLD, 1, 1, Random.Float( 0.9f, 1.1f ) );
 		}

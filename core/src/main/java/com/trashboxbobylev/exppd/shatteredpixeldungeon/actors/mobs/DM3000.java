@@ -51,39 +51,30 @@ import com.watabou.utils.Bundle;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
-public class DM300 extends Mob {
+public class DM3000 extends DepthyMob {
 	
 	{
 		spriteClass = DM300Sprite.class;
 		
-		HP = HT = 200;
-		EXP = 30;
-		defenseSkill = 18;
-		
+		HP = HT = 30000;
 
-		properties.add(Property.BOSS);
 		properties.add(Property.INORGANIC);
 	}
 	
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( 20, 25 );
-	}
-	
-	@Override
-	public int attackSkill( Char target ) {
-		return 28;
+		return Random.NormalIntRange( 200, 500 );
 	}
 	
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(0, 10);
+		return Random.NormalIntRange(200, 400);
 	}
 	
 	@Override
 	public boolean act() {
 		
-		GameScene.add( Blob.seed( pos, 30, ToxicGas.class ) );
+		GameScene.add( Blob.seed( pos, 80, ToxicGas.class ) );
 		
 		return super.act();
 	}
@@ -142,9 +133,6 @@ public class DM300 extends Mob {
 		
 		super.die( cause );
 		
-		GameScene.bossSlain();
-		Dungeon.level.drop( new SkeletonKey( Dungeon.depth  ), pos ).sprite.drop();
-		
 		//60% chance of 2 shards, 30% chance of 3, 10% chance for 4. Average of 2.5
 		int shards = Random.chances(new float[]{0, 0, 6, 3, 1});
 		for (int i = 0; i < shards; i++){
@@ -154,32 +142,11 @@ public class DM300 extends Mob {
 			} while (!Dungeon.level.passable[pos + ofs]);
 			Dungeon.level.drop( new MetalShard(), pos + ofs ).sprite.drop( pos );
 		}
-		
-		Badges.validateBossSlain();
+	}
 
-		LloydsBeacon beacon = Dungeon.hero.belongings.getItem(LloydsBeacon.class);
-		if (beacon != null) {
-			beacon.upgrade();
-		}
-		
-		yell( Messages.get(this, "defeated") );
-	}
-	
-	@Override
-	public void notice() {
-		super.notice();
-		BossHealthBar.assignBoss(this);
-		yell( Messages.get(this, "notice") );
-	}
 	
 	{
 		immunities.add( ToxicGas.class );
 		immunities.add( Terror.class );
-	}
-
-	@Override
-	public void restoreFromBundle(Bundle bundle) {
-		super.restoreFromBundle(bundle);
-		BossHealthBar.assignBoss(this);
 	}
 }

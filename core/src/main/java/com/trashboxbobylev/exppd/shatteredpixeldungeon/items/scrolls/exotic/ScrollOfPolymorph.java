@@ -25,6 +25,7 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.Assets;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.Dungeon;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.Char;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Invisibility;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.mobs.DepthyMob;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.mobs.Mimic;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.mobs.Mob;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.mobs.npcs.Sheep;
@@ -56,11 +57,15 @@ public class ScrollOfPolymorph extends ExoticScroll {
 		new Flare( 5, 32 ).color( 0xFFFFFF, true ).show( curUser.sprite, 2f );
 		Sample.INSTANCE.play( Assets.SND_READ );
 		Invisibility.dispel();
-		
+
+        setKnown();
+
+        readAnimation();
+
 		for (Mob mob : Dungeon.level.mobs.toArray( new Mob[0] )) {
 			if (true) {
 				if (!mob.properties().contains(Char.Property.BOSS)
-						&& !mob.properties().contains(Char.Property.MINIBOSS)){
+						&& !mob.properties().contains(Char.Property.MINIBOSS) || (mob instanceof DepthyMob && Random.Float() < 0.1f)){
 					/*Sheep sheep = new Sheep();
 					sheep.lifespan = 10;
 					sheep.pos = mob.pos;
@@ -94,9 +99,6 @@ public class ScrollOfPolymorph extends ExoticScroll {
 				}
 			}
 		}
-		setKnown();
-		
-		readAnimation();
 		
 	}
 	

@@ -138,7 +138,6 @@ public class SpiritBow extends Weapon {
 	@Override
 	public int max(int lvl) {
         int i = 6 + (int) (Dungeon.hero.lvl / 2.5f) + 2 * RingOfSharpshooting.levelDamageBonus(Dungeon.hero);
-        if (Dungeon.hero.lvl > 200) i*= 40;
         return i;
 	}
 	

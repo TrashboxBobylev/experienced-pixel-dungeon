@@ -80,7 +80,7 @@ public class MagesStaff extends MeleeWeapon {
 	public int max(int lvl) {
         int i = 4 * (tier + 1) +    //8 base damage, down from 10
                 lvl * (tier + 1);
-        if (Dungeon.hero.lvl > 200) i *= 90;
+        if (Dungeon.hero.lvl > 200) i *= 2;
         return i;   //scaling unaffected
 	}
 

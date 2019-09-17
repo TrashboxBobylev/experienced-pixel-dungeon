@@ -110,34 +110,9 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.wands.WandOfMagicMi
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.wands.WandOfPrismaticLight;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.wands.WandOfRegrowth;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.wands.WandOfTransfusion;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.AssassinsBlade;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.BattleAxe;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.Crossbow;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.Dagger;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.Dirk;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.Flail;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.Gauntlet;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.Glaive;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.Gloves;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.Greataxe;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.Greatshield;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.Greatsword;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.HandAxe;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.Longsword;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.Mace;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.MagesStaff;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.MeleeWeapon;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.Quarterstaff;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.RoundShield;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.RunicBlade;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.Sai;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.Scimitar;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.Shortsword;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.Spear;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.Sword;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.WarHammer;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.Whip;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.WornShortsword;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.DoubleKnifes;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.NinjaSword;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.*;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.Bolas;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.FishingSpear;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.Javelin;
@@ -179,6 +154,7 @@ public class Generator {
 		WEP_T3	( 0,    MeleeWeapon.class),
 		WEP_T4	( 0,    MeleeWeapon.class),
 		WEP_T5	( 0,    MeleeWeapon.class),
+        WEP_T6 (0, MeleeWeapon.class),
 		
 		ARMOR	( 4,    Armor.class ),
 		
@@ -360,6 +336,14 @@ public class Generator {
 					Gauntlet.class
 			};
 			WEP_T5.probs = new float[]{ 6, 5, 5, 4, 4, 4 };
+
+            WEP_T6.classes = new Class<?>[]{
+                    NinjaSword.class,
+                    DoubleKnifes.class,
+                    Halberd.class,
+                    Jjango.class
+            };
+            WEP_T6.probs = new float[]{ 6, 5, 5, 5};
 			
 			//see Generator.randomArmor
 			ARMOR.classes = new Class<?>[]{
@@ -444,12 +428,12 @@ public class Generator {
 	}
 
 	private static final float[][] floorSetTierProbs = new float[][] {
-			{0, 70, 20,  8,  2},
-			{0, 25, 50, 20,  5},
-			{0, 10, 40, 40, 10},
-			{0,  5, 20, 50, 25},
-			{0,  2,  8, 20, 70},
-            {0,  0,  0, 10, 90}
+			{0, 70, 20,  8,  2, 0},
+			{0, 25, 50, 20,  5, 0},
+			{0, 10, 40, 40, 10, 0},
+			{0,  5, 20, 50, 25, 0},
+			{0,  2,  8, 20, 65, 5},
+            {0,  0,  0, 10, 50, 40}
 	};
 	
 	private static HashMap<Category,Float> categoryProbs = new LinkedHashMap<>();
@@ -532,7 +516,8 @@ public class Generator {
 			Category.WEP_T2,
 			Category.WEP_T3,
 			Category.WEP_T4,
-			Category.WEP_T5
+			Category.WEP_T5,
+            Category.WEP_T6
 	};
 
 	public static MeleeWeapon randomWeapon(){

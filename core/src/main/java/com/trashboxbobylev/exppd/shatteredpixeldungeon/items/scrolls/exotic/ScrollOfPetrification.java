@@ -23,12 +23,26 @@ package com.trashboxbobylev.exppd.shatteredpixeldungeon.items.scrolls.exotic;
 
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.Assets;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.Dungeon;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.Char;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Buff;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Invisibility;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Paralysis;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.mobs.DepthyMob;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.mobs.Mimic;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.mobs.Mob;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.mobs.Statue;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.effects.Flare;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.Item;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.rings.RingOfWealth;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.wands.CursedWand;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.messages.Messages;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.scenes.GameScene;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.ui.TargetHealthIndicator;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.utils.GLog;
 import com.watabou.noosa.audio.Sample;
+
+import java.util.ArrayList;
+import com.watabou.utils.Random;
 
 public class ScrollOfPetrification extends ExoticScroll {
 	
@@ -41,15 +55,27 @@ public class ScrollOfPetrification extends ExoticScroll {
 		new Flare( 5, 32 ).color( 0xFF0000, true ).show( curUser.sprite, 2f );
 		Sample.INSTANCE.play( Assets.SND_READ );
 		Invisibility.dispel();
+
+        setKnown();
+
+        readAnimation();
 		
 		for (Mob mob : Dungeon.level.mobs.toArray( new Mob[0] )) {
-			if (Dungeon.level.heroFOV[mob.pos]) {
-				Buff.affect( mob, Paralysis.class, Paralysis.DURATION );
-			}
+//			if (Dungeon.level.heroFOV[mob.pos]) {
+//				Buff.affect( mob, Paralysis.class, Paralysis.DURATION );
+//			}
+            if (!mob.properties().contains(Char.Property.BOSS)
+                    && !mob.properties().contains(Char.Property.MINIBOSS) || (mob instanceof DepthyMob && Random.Float() < 0.1f)) {
+                Statue statue = new Statue();
+                Sample.INSTANCE.play(Assets.SND_CURSED, 1, 1, 0.5f);
+                mob.destroy();
+                mob.sprite.killAndErase();
+                Dungeon.level.mobs.remove(mob);
+                TargetHealthIndicator.instance.target(null);
+                GameScene.add(statue);
+            } else {
+                GLog.i(Messages.get(CursedWand.class, "nothing"));
+            }
 		}
-		
-		setKnown();
-		
-		readAnimation();
 	}
 }

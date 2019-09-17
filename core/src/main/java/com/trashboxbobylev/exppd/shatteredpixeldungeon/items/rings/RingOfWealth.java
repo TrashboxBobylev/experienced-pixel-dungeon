@@ -208,11 +208,6 @@ public class RingOfWealth extends Ring {
 		return tries * (float)Math.pow(1.2f, getBonus(target, Wealth.class) );
 	}
 
-    @Override
-    public boolean isUpgradable() {
-        return level() < 50;
-    }
-
     public class Wealth extends RingBuff {
 		
 		private void triesToDrop( float val ){
@@ -234,7 +229,10 @@ public class RingOfWealth extends Ring {
 		public void addExp(int expi){
 		    exp += expi;
             if (exp >= 200 && level() < 50){
-                upgrade();
+                while (exp >= 200) {
+                    upgrade();
+                    exp -= 200;
+                }
                 GameScene.flash(0x00000);
                 GLog.p(Messages.get(RingOfWealth.class, "levelup"));
                 exp = 0;

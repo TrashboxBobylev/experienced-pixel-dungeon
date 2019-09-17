@@ -100,7 +100,7 @@ public abstract class Mob extends Char {
 	protected boolean enemySeen;
 	protected boolean alerted = false;
 
-	protected static final float TIME_TO_WAKE_UP = 1f;
+	protected static float TIME_TO_WAKE_UP = 1f;
 	
 	private static final String STATE	= "state";
 	private static final String SEEN	= "seen";
@@ -182,7 +182,7 @@ public abstract class Mob extends Char {
 		
 		enemy = chooseEnemy();
 		
-		boolean enemyInFOV = enemy != null && enemy.isAlive() && fieldOfView[enemy.pos] && enemy.invisible <= 0;
+		boolean enemyInFOV = enemy != null && enemy.isAlive() && fieldOfView[enemy.pos] && (enemy.invisible <= 0 && Dungeon.depth < 27);
 
 		return state.act( enemyInFOV, justAlerted );
 	}

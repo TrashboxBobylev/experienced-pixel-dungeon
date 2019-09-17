@@ -102,6 +102,8 @@ public class Thief extends Mob {
 		super.rollToDropLoot();
 	}
 
+
+
 	@Override
 	public int attackSkill( Char target ) {
 		return 12;

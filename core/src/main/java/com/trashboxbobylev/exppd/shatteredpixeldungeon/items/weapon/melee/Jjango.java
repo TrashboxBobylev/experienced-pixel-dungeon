@@ -21,14 +21,14 @@
 
 package com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee;
 
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.Char;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 
-public class WarHammer extends MeleeWeapon {
+public class Jjango extends MeleeWeapon {
 
 	{
-		image = ItemSpriteSheet.WAR_HAMMER;
+		image = ItemSpriteSheet.JJANGO;
 
-		tier = 5;
 		ACC = 1.20f; //20% boost to accuracy
 	}
 
@@ -38,4 +38,8 @@ public class WarHammer extends MeleeWeapon {
 				lvl*(tier+1);   //scaling unchanged
 	}
 
+    @Override
+    public float accuracyFactor(Char owner) {
+        return super.accuracyFactor(owner)*(1f+0.5f*level());
+    }
 }

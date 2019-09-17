@@ -22,32 +22,30 @@
 package com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.mobs;
 
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.Char;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.sprites.AlbinoSprite;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.sprites.RatSprite;
 import com.watabou.utils.Random;
 
-public class Rat extends Mob {
+public class RatSupreme extends Mob {
 
 	{
-		spriteClass = RatSprite.class;
+		spriteClass = AlbinoSprite.class;
 		
-		HP = HT = 8;
-		defenseSkill = 2;
-		
-		maxLvl = 5;
+		HP = HT = 5000;
 	}
 	
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( 1, 4 );
+		return Random.NormalIntRange( 50, 95 );
 	}
-	
-	@Override
-	public int attackSkill( Char target ) {
-		return 8;
-	}
+
+    @Override
+    protected float attackDelay() {
+        return super.attackDelay()*0.2f;
+    }
 	
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(0, 1);
+		return Random.NormalIntRange(25, 40);
 	}
 }

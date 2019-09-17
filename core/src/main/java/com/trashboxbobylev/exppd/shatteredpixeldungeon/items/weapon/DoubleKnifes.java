@@ -19,29 +19,28 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee;
+package com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon;
 
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.Char;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.MeleeWeapon;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.messages.Messages;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 
-public class RoundShield extends MeleeWeapon {
+public class DoubleKnifes extends MeleeWeapon {
 
 	{
-		image = ItemSpriteSheet.ROUND_SHIELD;
-
-		tier = 3;
+		image = ItemSpriteSheet.TWIN_BLADES;
 	}
 
 	@Override
 	public int max(int lvl) {
-		return  3*(tier+1) +    //12 base, down from 20
-				lvl*(tier-1);   //+2 per level, down from +4
+		return (int) (2.5f*(tier+1) +    //12 base, down from 20
+                        lvl*(tier-1));   //+2 per level, down from +4
 	}
 
 	@Override
 	public int defenseFactor( Char owner ) {
-		return 5+2*level();     //5 extra defence, plus 2 per level;
+		return 10+4*level();     //5 extra defence, plus 2 per level;
 	}
 	
 	public String statsInfo(){

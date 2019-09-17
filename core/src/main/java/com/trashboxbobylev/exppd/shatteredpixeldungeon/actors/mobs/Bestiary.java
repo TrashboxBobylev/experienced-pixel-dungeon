@@ -56,7 +56,6 @@ public class Bestiary {
 						Gnoll.class, Gnoll.class, Gnoll.class, Gnoll.class,
 						Crab.class, Swarm.class));
 			case 4:
-            case 27:
                 //1x rat, 2x gnoll, 3x crab, 1x swarm
 				return new ArrayList<>(Arrays.asList(Rat.class,
 						Gnoll.class, Gnoll.class,
@@ -82,7 +81,6 @@ public class Bestiary {
 						Shaman.class, Shaman.class,
 						Guard.class, Guard.class));
 			case 9:
-            case 28:
 				//3x skeleton, 1x thief, 2x shaman, 3x guard
 				return new ArrayList<>(Arrays.asList(Skeleton.class, Skeleton.class, Skeleton.class,
 						Thief.class,
@@ -109,7 +107,6 @@ public class Bestiary {
 						Shaman.class,
 						Spinner.class));
 			case 14:
-            case 29:
 				//1x bat, 3x brute, 1x shaman, 4x spinner
 				return new ArrayList<>(Arrays.asList(
 						Bat.class,
@@ -164,6 +161,16 @@ public class Bestiary {
 						Succubus.class,
 						Eye.class, Eye.class,
 						Scorpio.class, Scorpio.class, Scorpio.class));
+            case 27:
+                //3x rat, 3x gnoll
+                return new ArrayList<>(Arrays.asList(RatSupreme.class, RatSupreme.class,
+                        GnollSupreme.class, GnollSupreme.class, CrabSupreme.class));
+            case 28:
+                //3x skeleton, 1x thief, 1x swarm
+                return new ArrayList<>(Arrays.asList(BanditSupreme.class, BanditSupreme.class, ShamanSupreme.class, ShamanSupreme.class, Skeleton.class));
+            case 29:
+                //3x skeleton, 1x thief, 1x swarm
+                return new ArrayList<>(Arrays.asList(GooSupreme.class, GooSupreme.class, GooSupreme.class, DM3000.class, Brute.class));
 
         }
 		

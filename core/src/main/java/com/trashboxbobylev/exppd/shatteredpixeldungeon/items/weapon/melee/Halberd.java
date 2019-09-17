@@ -21,14 +21,14 @@
 
 package com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee;
 
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.Char;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 
-public class Glaive extends MeleeWeapon {
+public class Halberd extends T6Weapon {
 
 	{
-		image = ItemSpriteSheet.GLAIVE;
+		image = ItemSpriteSheet.HALBERD;
 
-		tier = 5;
 		DLY = 1.5f; //0.67x speed
 		RCH = 2;    //extra reach
 	}
@@ -39,4 +39,8 @@ public class Glaive extends MeleeWeapon {
 				lvl*Math.round(1.33f*(tier+1)); //+8 per level, up from +6
 	}
 
+    @Override
+    public int reachFactor(Char owner) {
+        return (int) (super.reachFactor(owner)*(1f+level()/10));
+    }
 }

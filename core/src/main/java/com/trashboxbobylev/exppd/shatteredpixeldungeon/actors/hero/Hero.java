@@ -88,6 +88,7 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.enchantments
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.enchantments.Swift;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.enchantments.Unstable;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.Flail;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.T6Weapon;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.MissileWeapon;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.journal.Notes;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.levels.Level;
@@ -377,6 +378,8 @@ public class Hero extends Char {
 		
 		Blocking.BlockBuff block = buff(Blocking.BlockBuff.class);
 		if (block != null)              dr += block.blockingRoll();
+
+		if (Dungeon.hero.lvl < 150 && Dungeon.depth > 26) dr /= 5;
 		
 		return dr;
 	}
@@ -711,33 +714,13 @@ public class Hero extends Char {
 			
 			Heap heap = Dungeon.level.heaps.get( pos );
 			if (heap != null) {
-				Item item = heap.peek();
-				if (item.doPickUp( this )) {
-					heap.pickUp();
-
-					if (item instanceof Dewdrop
-							|| item instanceof TimekeepersHourglass.sandBag
-							|| item instanceof DriedRose.Petal
-							|| item instanceof Key) {
-						//Do Nothing
-					} else {
-
-						boolean important =
-								(item instanceof ScrollOfUpgrade && ((Scroll)item).isKnown()) ||
-								(item instanceof PotionOfStrength && ((Potion)item).isKnown());
-						if (important) {
-							GLog.p( Messages.get(this, "you_now_have", item.name()) );
-						} else {
-							GLog.i( Messages.get(this, "you_now_have", item.name()) );
-						}
-					}
-					
-					curAction = null;
-				} else {
-					heap.sprite.drop();
-					ready();
-				}
-			} else {
+                if (Dungeon.hero.lvl > 100)
+                    while (!heap.isEmpty()) {
+                        heap = Dungeon.level.heaps.get( pos );
+                        pickupItemFromHeap(heap);
+                    }
+                else pickupItemFromHeap(heap);
+            } else {
 				ready();
 			}
 
@@ -752,8 +735,37 @@ public class Hero extends Char {
 			return false;
 		}
 	}
-	
-	private boolean actOpenChest( HeroAction.OpenChest action ) {
+
+    public void pickupItemFromHeap(Heap heap) {
+        Item item = heap.peek();
+        if (item.doPickUp( this )) {
+            heap.pickUp();
+
+            if (item instanceof Dewdrop
+                    || item instanceof TimekeepersHourglass.sandBag
+                    || item instanceof DriedRose.Petal
+                    || item instanceof Key) {
+                //Do Nothing
+            } else {
+
+                boolean important =
+                        (item instanceof ScrollOfUpgrade && ((Scroll)item).isKnown()) ||
+                        (item instanceof PotionOfStrength && ((Potion)item).isKnown());
+                if (important) {
+                    GLog.p( Messages.get(this, "you_now_have", item.name()) );
+                } else {
+                    GLog.i( Messages.get(this, "you_now_have", item.name()) );
+                }
+            }
+
+            curAction = null;
+        } else {
+            heap.sprite.drop();
+            ready();
+        }
+    }
+
+    private boolean actOpenChest( HeroAction.OpenChest action ) {
 		int dst = action.dst;
 		if (Dungeon.level.adjacent( pos, dst ) || pos == dst) {
 			
@@ -1238,7 +1250,7 @@ public class Hero extends Char {
         float expMod = 1f;
         int bonusMaxLevel = 0;
         ExpBelt.ExpObtain buff = Dungeon.hero.buff(ExpBelt.ExpObtain.class);
-        if (buff != null){
+        if (buff != null && source != PotionOfExperience.class){
             expMod += (buff.itemLevel()+1)* (buff.itemLevel() > 50 ? 2.0f: 0.2f);
             bonusMaxLevel += 2*(buff.itemLevel()+1);
             if (buff.isCursed()){
@@ -1247,7 +1259,7 @@ public class Hero extends Char {
         }
 
         exp *= expMod;
-        Dungeon.hero.sprite.showStatus(CharSprite.POSITIVE, Messages.get(Mob.class, "exp", exp));
+        if (exp > 0) Dungeon.hero.sprite.showStatus(CharSprite.POSITIVE, Messages.get(Mob.class, "exp", exp));
         if (buff != null) buff.obtain(Math.round(exp));
 
         RingOfWealth.Wealth buff2 = buff(RingOfWealth.Wealth.class);
@@ -1273,6 +1285,7 @@ public class Hero extends Char {
 			for (Item i : belongings) {
 				i.onHeroGainExp(percent, this);
 			}
+			if (belongings.weapon instanceof T6Weapon) ((T6Weapon) belongings.weapon).gainExp(exp);
 		}
 
 

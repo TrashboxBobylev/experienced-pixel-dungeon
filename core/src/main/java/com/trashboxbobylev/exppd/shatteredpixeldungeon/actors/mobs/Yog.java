@@ -160,7 +160,7 @@ public class Yog extends Mob {
 	public void die( Object cause ) {
 
 	    for (Mob mob : (Iterable<Mob>)Dungeon.level.mobs.clone()){
-	        if (mob instanceof Yog) return;
+	        if (mob instanceof Yog && mob != this) return;
         }
 
 		for (Mob mob : (Iterable<Mob>)Dungeon.level.mobs.clone()) {

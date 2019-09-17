@@ -48,15 +48,12 @@ import com.watabou.utils.Bundle;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
-public class Goo extends Mob {
+public class GooSupreme extends Mob {
 
 	{
-		HP = HT = 100;
-		EXP = 10;
-		defenseSkill = 8;
+		HP = HT = 10000;
 		spriteClass = GooSprite.class;
 
-		properties.add(Property.BOSS);
 		properties.add(Property.DEMONIC);
 		properties.add(Property.ACIDIC);
 	}
@@ -66,7 +63,7 @@ public class Goo extends Mob {
 	@Override
 	public int damageRoll() {
 		int min = 1;
-		int max = (HP*2 <= HT) ? 15 : 10;
+		int max = (HP*2 <= HT) ? 300 : 150;
 		if (pumpedUp > 0) {
 			pumpedUp = 0;
 			PathFinder.buildDistanceMap( pos, BArray.not( Dungeon.level.solid, null ), 2 );
@@ -82,21 +79,13 @@ public class Goo extends Mob {
 	}
 
 	@Override
-	public int attackSkill( Char target ) {
-		int attack = 10;
-		if (HP*2 <= HT) attack = 15;
-		if (pumpedUp > 0) attack *= 2;
-		return attack;
-	}
-
-	@Override
 	public int defenseSkill(Char enemy) {
 		return (int)(super.defenseSkill(enemy) * ((HP*2 <= HT)? 1.5 : 1));
 	}
 
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(0, 2);
+		return Random.NormalIntRange(100, 150);
 	}
 
 	@Override
@@ -108,7 +97,7 @@ public class Goo extends Mob {
 				BossHealthBar.bleed(false);
 				((GooSprite)sprite).spray(false);
 			}
-			HP++;
+			HP += 250;
 		}
 
 		return super.act();
@@ -180,8 +169,8 @@ public class Goo extends Mob {
 			}
 
 			if (Dungeon.level.heroFOV[pos]) {
-				sprite.showStatus( CharSprite.NEGATIVE, Messages.get(this, "!!!") );
-				GLog.n( Messages.get(this, "pumpup") );
+				sprite.showStatus( CharSprite.NEGATIVE, Messages.get(Goo.class, "!!!") );
+				GLog.n( Messages.get(Goo.class, "pumpup") );
 			}
 
 			spend( attackDelay() );
@@ -214,10 +203,9 @@ public class Goo extends Mob {
 		boolean bleeding = (HP*2 <= HT);
 		super.damage(dmg, src);
 		if ((HP*2 <= HT) && !bleeding){
-			BossHealthBar.bleed(true);
 			sprite.showStatus(CharSprite.NEGATIVE, Messages.get(this, "enraged"));
 			((GooSprite)sprite).spray(true);
-			yell(Messages.get(this, "gluuurp"));
+			yell(Messages.get(Goo.class, "gluuurp"));
 		}
 		LockedFloor lock = Dungeon.hero.buff(LockedFloor.class);
 		if (lock != null) lock.addTime(dmg*2);
@@ -228,11 +216,6 @@ public class Goo extends Mob {
 		
 		super.die( cause );
 		
-		Dungeon.level.unseal();
-		
-		GameScene.bossSlain();
-		Dungeon.level.drop( new SkeletonKey( Dungeon.depth ), pos ).sprite.drop();
-		
 		//60% chance of 2 blobs, 30% chance of 3, 10% chance for 4. Average of 2.5
 		int blobs = Random.chances(new float[]{0, 0, 6, 3, 1});
 		for (int i = 0; i < blobs; i++){
@@ -242,17 +225,6 @@ public class Goo extends Mob {
 			} while (!Dungeon.level.passable[pos + ofs]);
 			Dungeon.level.drop( new GooBlob(), pos + ofs ).sprite.drop( pos );
 		}
-		
-		Badges.validateBossSlain();
-		
-		yell( Messages.get(this, "defeated") );
-	}
-	
-	@Override
-	public void notice() {
-		super.notice();
-		BossHealthBar.assignBoss(this);
-		yell( Messages.get(this, "notice") );
 	}
 
 	private final String PUMPEDUP = "pumpedup";

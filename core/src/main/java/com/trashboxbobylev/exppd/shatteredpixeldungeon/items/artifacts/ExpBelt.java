@@ -6,7 +6,7 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.utils.GLog;
 
 public class ExpBelt extends Artifact {
-    private static final int BELT_UPGRADE_SCALE = 75;
+    private static final int BELT_UPGRADE_SCALE = 55;
 
     {
         image = ItemSpriteSheet.ARTIFACT_BELT;
@@ -37,7 +37,10 @@ public class ExpBelt extends Artifact {
         public void obtain(int expObt){
             exp += expObt;
             if (exp >= level()*BELT_UPGRADE_SCALE){
-                upgrade();
+                while (exp >= level()*BELT_UPGRADE_SCALE) {
+                    upgrade();
+                    exp -= level()*BELT_UPGRADE_SCALE;
+                }
                 GLog.p(Messages.get(this, "levelup"));
                 exp = 0;
             }

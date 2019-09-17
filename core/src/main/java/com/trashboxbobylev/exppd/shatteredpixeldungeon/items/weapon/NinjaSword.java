@@ -19,16 +19,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee;
+package com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon;
 
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.Char;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.MeleeWeapon;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.T6Weapon;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 
-public class Shortsword extends MeleeWeapon {
+public class NinjaSword extends T6Weapon {
 
 	{
-		image = ItemSpriteSheet.SHORTSWORD;
-
-		tier = 2;
+		image = ItemSpriteSheet.SWIFTSWORD;
 	}
 
+    @Override
+    public float speedFactor(Char owner) {
+        return super.speedFactor(owner)*(1f+0.025f*level());
+    }
 }

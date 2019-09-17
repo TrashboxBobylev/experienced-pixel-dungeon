@@ -25,6 +25,7 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.Assets;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.Badges;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.Chrome;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.ShatteredPixelDungeon;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.mobs.Yog;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.effects.BadgeBanner;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.Ankh;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.DewVial;
@@ -48,6 +49,7 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.scrolls.ScrollOfMir
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.scrolls.ScrollOfRetribution;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.scrolls.ScrollOfTeleportation;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.scrolls.ScrollOfTerror;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfPetrification;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfPolymorph;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.stones.StoneOfAugmentation;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.stones.StoneOfEnchantment;
@@ -132,6 +134,48 @@ public class ChangesScene extends PixelScene {
         ChangeInfo changes = new ChangeInfo("Experienced PD", true, "");
         changes.hardlight( Window.TITLE_COLOR );
         infos.add(changes);
+
+        changes = new ChangeInfo("v1.2", false, null);
+        changes.hardlight( Window.TITLE_COLOR );
+        infos.add(changes);
+
+        changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.EXOTIC_LAGUZ, null), Messages.get(ScrollOfPolymorph.class, "name"),
+                "The scroll of polymorph now properly spend the turn."));
+
+        changes.addButton(new ChangeButton(new Image(Assets.BUFFS_LARGE, 80, 32, 16, 16), "Experience-based Items",
+                "_-_ Now spend all gained exp to upgrade, not only 200 or (band level*required exp).\n"+
+                                        "_-_ Ring of Wealth no longer capped.") );
+
+        changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.SPIRIT_BOW, null), "Starting Weapon damage",
+                "_-_ Removed the damage bonus on spirit bow.\n"+
+                                        "_-_ Mage's Staff now gets only 2x damage bonus."));
+
+        changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.RING_AMETHYST, null), Messages.get(RingOfWealth.class, "name"),
+                "Immense freezes with high-upgraded RoW were fixed."));
+
+        changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.EXOTIC_ISAZ, null), Messages.get(ScrollOfPetrification.class, "name"),
+                "The scroll of petrification now turns all regular enemies into animated statues."));
+
+        changes.addButton(new ChangeButton(new Image(Assets.YOG, 0, 0, 19, 18), Messages.get(Yog.class, "name"),
+                "Yog's invincibility has been fixed, making depths 27-31 accessible."));
+
+        changes.addButton( new ChangeButton( Icons.get(Icons.DEPTH), "New Chapter enemies",
+                "In depths 27-29 enemies have new advantages:\n\n"+
+                                        "_-_ Always hunting hero, even if they are invisible.\n"+
+                                        "_-_ Can't be sneaked, until hero hits level 200.\n"+
+                                        "_-_ Ignores 80% of defense, until hero hits level 150.\n" +
+                                        "_-_ Until hero reaches level 150, all damage are reduced by 90%.\n"+
+                                        "_-_ Even hero makes them sleeping, mobs will awake from magical sleep with 25% chance per turn.\n"+
+                                        "_-_ Accuracy and evasion are comparable to hero's.\n"+
+                                        "_-_ Can see further that hero.\n"+
+                                        "_-_ Are immune to corruption, terror and caustic ooze.\n"+
+                                        "_-_ The transformation scrolls affects them only with 10% chance."));
+
+        changes.addButton(new ChangeButton(new Image(Assets.GOO, 0, 0, 19, 16), "New monsters!",
+                "On 27-29 new monsters were added. Find it themself."));
+
+        changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.SWIFTSWORD, null), "T6 Weapons!",
+                "Added 4 new tier 6 weapons. They can be found in Halls and new depths, upgrades with exp earning."));
 
         changes = new ChangeInfo("v1.1.1a", false, null);
         changes.hardlight( Window.TITLE_COLOR );

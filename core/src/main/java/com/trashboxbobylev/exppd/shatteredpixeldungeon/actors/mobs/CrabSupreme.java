@@ -22,21 +22,20 @@
 package com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.mobs;
 
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.Char;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Buff;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Burning;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Slow;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.food.MysteryMeat;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.sprites.CrabSprite;
 import com.watabou.utils.Random;
 
-public class Crab extends Mob {
+public class CrabSupreme extends DepthyMob {
 
 	{
 		spriteClass = CrabSprite.class;
 		
-		HP = HT = 15;
-		defenseSkill = 5;
-		baseSpeed = 2f;
-		
-		EXP = 4;
-		maxLvl = 9;
+		HP = HT = 6000;
+		baseSpeed = 3f;
 		
 		loot = new MysteryMeat();
 		lootChance = 0.167f;
@@ -44,16 +43,26 @@ public class Crab extends Mob {
 	
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( 1, 8 );
+		return Random.NormalIntRange( 100, 150 );
 	}
-	
-	@Override
-	public int attackSkill( Char target ) {
-		return 12;
-	}
-	
-	@Override
-	public int drRoll() {
-		return Random.NormalIntRange(0, 4);
-	}
+
+    @Override
+    public int attackProc( Char enemy, int damage ) {
+        damage = super.attackProc( enemy, damage );
+        if (Random.Int( 2 ) == 0) {
+            Buff.affect( enemy, Slow.class, 5);
+        }
+
+        return damage;
+    }
+
+    @Override
+    protected float attackDelay() {
+        return super.attackDelay()*0.15f;
+    }
+
+    @Override
+    public int drRoll() {
+        return Random.NormalIntRange(80, 160);
+    }
 }
