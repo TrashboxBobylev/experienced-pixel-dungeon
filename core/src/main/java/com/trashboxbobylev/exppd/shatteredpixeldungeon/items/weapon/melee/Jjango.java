@@ -24,7 +24,7 @@ package com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.Char;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 
-public class Jjango extends MeleeWeapon {
+public class Jjango extends T6Weapon {
 
 	{
 		image = ItemSpriteSheet.JJANGO;

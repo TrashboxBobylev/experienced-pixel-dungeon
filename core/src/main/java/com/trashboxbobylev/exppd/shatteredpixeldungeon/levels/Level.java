@@ -36,7 +36,7 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Blindness;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Buff;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.LockedFloor;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.MagicalSight;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.MindyVision;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.MindVision;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Shadows;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.hero.Hero;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.hero.HeroClass;
@@ -884,8 +884,8 @@ public abstract class Level implements Bundlable {
 		int sense = 1;
 		//Currently only the hero can get mind vision
 		if (c.isAlive() && c == Dungeon.hero) {
-			for (Buff b : c.buffs( MindyVision.class )) {
-				sense = Math.max( ((MindyVision)b).distance, sense );
+			for (Buff b : c.buffs( MindVision.class )) {
+				sense = Math.max( ((MindVision)b).distance, sense );
 			}
 			if (c.buff(MagicalSight.class) != null){
 				sense = 8;
@@ -922,7 +922,7 @@ public abstract class Level implements Bundlable {
 		//Currently only the hero can get mind vision or awareness
 		if (c.isAlive() && c == Dungeon.hero) {
 			Dungeon.hero.mindVisionEnemies.clear();
-			if (c.buff( MindyVision.class ) != null) {
+			if (c.buff( MindVision.class ) != null) {
 				for (Mob mob : mobs) {
 					int p = mob.pos;
 

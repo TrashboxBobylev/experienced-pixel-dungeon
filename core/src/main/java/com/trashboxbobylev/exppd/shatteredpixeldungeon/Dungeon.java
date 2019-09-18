@@ -26,7 +26,7 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.Char;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Amok;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Awareness;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Light;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.MindyVision;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.MindVision;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.hero.Hero;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.mobs.Mob;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.mobs.npcs.Blacksmith;
@@ -771,7 +771,7 @@ public class Dungeon {
 	
 		GameScene.updateFog(l, t, width, height);
 		
-		if (hero.buff(MindyVision.class) != null){
+		if (hero.buff(MindVision.class) != null){
 			for (Mob m : level.mobs.toArray(new Mob[0])){
 				BArray.or( level.visited, level.heroFOV, m.pos - 1 - level.width(), 3, level.visited );
 				BArray.or( level.visited, level.heroFOV, m.pos, 3, level.visited );

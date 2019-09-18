@@ -44,7 +44,7 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Foresight;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Fury;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Hunger;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Invisibility;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.MindyVision;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.MindVision;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Momentum;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Paralysis;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Regeneration;
@@ -501,7 +501,7 @@ public class Hero extends Char {
 		
 		if (!ready) {
 			//do a full observe (including fog update) if not resting.
-			if (!resting || buff(MindyVision.class) != null || buff(Awareness.class) != null) {
+			if (!resting || buff(MindVision.class) != null || buff(Awareness.class) != null) {
 				Dungeon.observe();
 			} else {
 				//otherwise just directly re-calculate FOV

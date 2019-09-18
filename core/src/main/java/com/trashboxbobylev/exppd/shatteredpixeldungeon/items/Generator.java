@@ -110,8 +110,8 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.wands.WandOfMagicMi
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.wands.WandOfPrismaticLight;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.wands.WandOfRegrowth;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.wands.WandOfTransfusion;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.DoubleKnifes;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.NinjaSword;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.DoubleKnifes;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.NinjaSword;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.*;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.*;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.darts.Dart;

@@ -137,6 +137,17 @@ public class ChangesScene extends PixelScene {
         changes.hardlight( Window.TITLE_COLOR );
         infos.add(changes);
 
+        changes = new ChangeInfo("v1.2.1a", false, null);
+        changes.hardlight( Window.TITLE_COLOR );
+        infos.add(changes);
+
+        changes.addButton( new ChangeButton(new Image(Assets.SPINNER, 144, 0, 16, 16), Messages.get(this, "bugfixes"),
+                "_-_ Descending to new depths no longer crash the game.\n"+
+                                        "_-_ Picking up with full pack doesn't softlock the game.\n"+
+                                        "_-_ Fixed T6's missing abilities and strings.\n"+
+                                        "_-_ Mind Vision got renamed back.\n"+
+                                        "_-_ Other minor bugs."));
+
         changes = new ChangeInfo("v1.2.1", false, null);
         changes.hardlight( Window.TITLE_COLOR );
         infos.add(changes);

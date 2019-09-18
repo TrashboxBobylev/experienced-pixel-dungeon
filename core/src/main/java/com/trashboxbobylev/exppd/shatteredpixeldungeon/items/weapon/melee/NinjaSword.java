@@ -19,35 +19,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon;
+package com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee;
 
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.Char;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.MeleeWeapon;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.messages.Messages;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.T6Weapon;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 
-public class DoubleKnifes extends MeleeWeapon {
+public class NinjaSword extends T6Weapon {
 
 	{
-		image = ItemSpriteSheet.TWIN_BLADES;
+		image = ItemSpriteSheet.SWIFTSWORD;
 	}
 
-	@Override
-	public int max(int lvl) {
-		return (int) (2.5f*(tier+1) +    //12 base, down from 20
-                        lvl*(tier-1));   //+2 per level, down from +4
-	}
-
-	@Override
-	public int defenseFactor( Char owner ) {
-		return 10+4*level();     //5 extra defence, plus 2 per level;
-	}
-	
-	public String statsInfo(){
-		if (isIdentified()){
-			return Messages.get(this, "stats_desc", 5+2*level());
-		} else {
-			return Messages.get(this, "typical_stats_desc", 5);
-		}
-	}
+    @Override
+    public float speedFactor(Char owner) {
+        return super.speedFactor(owner)*(Math.max(1f - 0.025f * level(), 0.075f));
+    }
 }

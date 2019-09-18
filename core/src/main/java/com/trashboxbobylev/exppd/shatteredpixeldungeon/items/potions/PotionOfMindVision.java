@@ -23,7 +23,7 @@ package com.trashboxbobylev.exppd.shatteredpixeldungeon.items.potions;
 
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.Dungeon;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Buff;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.MindyVision;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.MindVision;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.hero.Hero;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.messages.Messages;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.utils.GLog;
@@ -37,7 +37,7 @@ public class PotionOfMindVision extends Potion {
 	@Override
 	public void apply( Hero hero ) {
 		setKnown();
-		Buff.affect( hero, MindyVision.class, MindyVision.DURATION );
+		Buff.affect( hero, MindVision.class, MindVision.DURATION );
 		Dungeon.observe();
 		
 		if (Dungeon.level.mobs.size() > 0) {

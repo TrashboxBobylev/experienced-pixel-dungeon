@@ -26,7 +26,7 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.Dungeon;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Awareness;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Buff;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Invisibility;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.MindyVision;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.MindVision;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.effects.CellEmitter;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.effects.Speck;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.effects.SpellSprite;
@@ -91,7 +91,7 @@ public class ScrollOfMagicMapping extends Scroll {
 	@Override
 	public void empoweredRead() {
 		doRead();
-		Buff.affect( curUser, MindyVision.class, MindyVision.DURATION );
+		Buff.affect( curUser, MindVision.class, MindVision.DURATION );
 		Buff.affect( curUser, Awareness.class, Awareness.DURATION );
 		Dungeon.observe();
 	}
