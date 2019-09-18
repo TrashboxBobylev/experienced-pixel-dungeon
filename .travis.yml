@@ -1,5 +1,5 @@
 language: android
-
+dist: trusty
 jdk: oraclejdk8
 
 android:
@@ -15,6 +15,9 @@ branches:
   - master
 
 sudo: true
+
+before_install:
+  - yes | sdkmanager "platforms;android-28"
 
 script: sudo bash gradlew assembleDebug
 
