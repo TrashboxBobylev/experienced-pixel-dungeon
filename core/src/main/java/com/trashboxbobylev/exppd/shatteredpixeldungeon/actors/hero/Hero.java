@@ -736,10 +736,8 @@ public class Hero extends Char {
 	}
 
     public void pickupItemFromHeap(Heap heap) {
-        final Item item = heap.peek();
+        final Item item = heap.pickUp();
         if (item.doPickUp( this )) {
-            heap.pickUp();
-
             if (item instanceof Dewdrop
                     || item instanceof TimekeepersHourglass.sandBag
                     || item instanceof DriedRose.Petal
