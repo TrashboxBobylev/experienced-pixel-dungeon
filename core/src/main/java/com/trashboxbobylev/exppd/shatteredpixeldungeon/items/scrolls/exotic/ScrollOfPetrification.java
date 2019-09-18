@@ -68,6 +68,7 @@ public class ScrollOfPetrification extends ExoticScroll {
                     && !mob.properties().contains(Char.Property.MINIBOSS) || (mob instanceof DepthyMob && Random.Float() < 0.1f)) {
                 Statue statue = new Statue();
                 Sample.INSTANCE.play(Assets.SND_CURSED, 1, 1, 0.5f);
+                statue.pos = mob.pos;
                 mob.destroy();
                 mob.sprite.killAndErase();
                 Dungeon.level.mobs.remove(mob);
