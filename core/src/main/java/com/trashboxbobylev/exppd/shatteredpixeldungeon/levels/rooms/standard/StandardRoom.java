@@ -148,22 +148,22 @@ public abstract class StandardRoom extends Room {
 	static {
 		chances[1] =  new float[]{20,  15,5, 0,0, 0,0, 0,0, 0,0,    1,0,1,0,1,0,1,1,0,0};
 		chances[2] =  new float[]{20,  15,5, 0,0, 0,0, 0,0, 0,0,    1,1,1,1,1,1,1,1,1,1};
-		chances[4] =  chances[3] = chances[2] = chances[27];
+		chances[4] =  chances[3] = chances[27] = chances[2];
 		chances[5] =  new float[]{50,  0,0, 0,0, 0,0, 0,0, 0,0,     0,0,0,0,0,0,0,0,0,0};
 		
 		chances[6] =  new float[]{20,  0,0, 15,5, 0,0, 0,0, 0,0,    1,1,1,1,1,1,1,1,1,1};
-		chances[10] = chances[9] = chances[8] = chances[7] = chances[6] = chances[28];
+		chances[10] = chances[9] = chances[8] = chances[7] = chances[28] = chances[6];
 		
 		chances[11] = new float[]{20,  0,0, 0,0, 15,5, 0,0, 0,0,    1,1,1,1,1,1,1,1,1,1};
-		chances[15] = chances[14] = chances[13] = chances[12] = chances[11] = chances[29];
+		chances[15] = chances[14] = chances[13] = chances[12] = chances[29] = chances[11];
 
 		chances[16] = new float[]{20,  0,0, 0,0, 0,0, 15,5, 0,0,    1,1,1,1,1,1,1,1,1,1};
-		chances[20] = chances[19] = chances[18] = chances[17] = chances[16] = chances[30];
+		chances[20] = chances[19] = chances[18] = chances[17] = chances[30] = chances[16];
 		
 		chances[21] = chances[5];
 		
 		chances[22] = new float[]{20,  0,0, 0,0, 0,0, 0,0, 15,5,    1,1,1,1,1,1,1,1,1,1};
-		chances[26] = chances[25] = chances[24] = chances[23] = chances[22] = chances[31];
+		chances[26] = chances[25] = chances[24] = chances[23] = chances[31] = chances[22];
 	}
 	
 	
