@@ -22,6 +22,7 @@
 package com.trashboxbobylev.exppd.shatteredpixeldungeon.levels.rooms.secret;
 
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.mobs.npcs.RatKing;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.Generator;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.Gold;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.Heap;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.Item;
@@ -79,7 +80,7 @@ public class RatKingRoom extends SecretRoom {
 			return;
 		}
 		
-		Item prize = new Gold( Random.IntRange( 10, 25 ) );
+		Item prize = Generator.random();
 		
 		level.drop( prize, pos ).type = Heap.Type.CHEST;
 	}

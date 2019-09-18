@@ -135,7 +135,6 @@ public class Bestiary {
 						Monk.class, Monk.class,
 						Golem.class));
 			case 19:
-            case 30:
 				//1x elemental, 1x warlock, 2x monk, 3x golem
 				return new ArrayList<>(Arrays.asList(
 						Elemental.class,
@@ -171,7 +170,8 @@ public class Bestiary {
             case 29:
                 //3x skeleton, 1x thief, 1x swarm
                 return new ArrayList<>(Arrays.asList(GooSupreme.class, GooSupreme.class, GooSupreme.class, DM3000.class, Brute.class));
-
+            case 30:
+                return new ArrayList<>(Arrays.asList(MonkSupreme.class, Eye.class, GooSupreme.class, Warlock.class, CrabSupreme.class));
         }
 		
 	}
