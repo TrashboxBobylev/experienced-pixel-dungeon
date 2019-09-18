@@ -52,6 +52,7 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.SnipersMark;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Vertigo;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Weakness;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.mobs.Mob;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.mobs.npcs.MirrorImage;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.mobs.npcs.NPC;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.effects.CellEmitter;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.effects.CheckedCell;
@@ -80,6 +81,7 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.potions.elixirs.Eli
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.rings.*;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.scrolls.Scroll;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.scrolls.ScrollOfMagicMapping;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.scrolls.ScrollOfTeleportation;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.SpiritBow;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.Weapon;
@@ -103,6 +105,7 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.scenes.InterlevelScene;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.scenes.SurfaceScene;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.sprites.CharSprite;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.sprites.HeroSprite;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.sprites.MissileSprite;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.ui.AttackIndicator;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.ui.BuffIndicator;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.ui.QuickSlotButton;
@@ -113,10 +116,7 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.windows.WndTradeItem;
 import com.watabou.noosa.Camera;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.audio.Sample;
-import com.watabou.utils.Bundle;
-import com.watabou.utils.GameMath;
-import com.watabou.utils.PathFinder;
-import com.watabou.utils.Random;
+import com.watabou.utils.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -714,7 +714,7 @@ public class Hero extends Char {
 			
 			Heap heap = Dungeon.level.heaps.get( pos );
 			if (heap != null) {
-                if (Dungeon.hero.lvl > 100)
+                if (Dungeon.hero.lvl > 60)
                     while (!heap.isEmpty()) {
                         heap = Dungeon.level.heaps.get( pos );
                         pickupItemFromHeap(heap);
@@ -737,7 +737,7 @@ public class Hero extends Char {
 	}
 
     public void pickupItemFromHeap(Heap heap) {
-        Item item = heap.peek();
+        final Item item = heap.peek();
         if (item.doPickUp( this )) {
             heap.pickUp();
 
@@ -760,7 +760,35 @@ public class Hero extends Char {
 
             curAction = null;
         } else {
-            heap.sprite.drop();
+
+            ArrayList<Integer> respawnPoints = new ArrayList<Integer>();
+
+            for (int i = 0; i < PathFinder.NEIGHBOURS8.length; i++) {
+                int p = Dungeon.hero.pos + PathFinder.NEIGHBOURS8[i];
+                if (Actor.findChar( p ) == null && Dungeon.level.passable[p]) {
+                    respawnPoints.add( p );
+                }
+            }
+
+            if (respawnPoints.size() > 0) {
+                final int index = Random.index( respawnPoints );
+
+                final ArrayList<Integer> finalRespawnPoints = respawnPoints;
+                ((MissileSprite) Dungeon.hero.sprite.parent.recycle(MissileSprite.class)).
+                        reset(Dungeon.hero.sprite,
+                                respawnPoints.get(index),
+                                item,
+                                new Callback() {
+                                    @Override
+                                    public void call() {
+                                        Heap heap = Dungeon.level.drop( item, finalRespawnPoints.get(index) );
+                                        if (!heap.isEmpty()) {
+                                            heap.sprite.drop(  );
+                                        }
+                                        Dungeon.hero.spendAndNext(0f);
+                                    }
+                                });
+            }
             ready();
         }
     }
