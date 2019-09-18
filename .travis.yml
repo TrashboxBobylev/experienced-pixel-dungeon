@@ -1,0 +1,38 @@
+language: android
+
+jdk: oraclejdk8
+
+android:
+  components:
+  - platform-tools
+  - tools
+  - build-tools-29.0.2
+  - android-29
+  - extra-android-m2repository
+
+branches:
+  only:
+  - master
+
+sudo: true
+
+script: sudo bash gradlew assembleDebug
+
+after_success:
+- pwd; sudo ls -l ./core/build/outputs/apk/debug/
+- cd ..
+- sudo git clone https://github.com/TrashboxBobylev/experienced-pixel-dungeon.git --branch autobuild --single-branch expPD_autobuild
+- cd expPD_autobuild
+- sudo mv ../experienced-pixel-dungeon/core/build/outputs/apk/debug/core-debug.apk ./expPD.apk
+- pwd; sudo ls -l .
+- sudo git config --global user.email "travis@travis-ci.org"
+- sudo git config --global user.name "Travis CI"
+- sudo git remote add origin-master https://${AUTH_KEY}@github.com/TrashboxBobylev/experienced-pixel-dungeon > /dev/null 2>&1
+- sudo git add ./expPD.apk
+- sudo git commit --message "Snapshot autobuild N.$TRAVIS_BUILD_NUMBER [ci skip]"
+- sudo git push origin-master HEAD:autobuild
+
+notifications:
+  email:
+    on_success: change
+    on_failure: always

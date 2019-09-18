@@ -1,0 +1,7 @@
+/.gradle/
+/core/build/
+/.idea/
+/shattered-pixel-dungeon-master.iml
+/SPD-classes/SPD-classes.iml
+/SPD-classes/build/
+/core/core.iml
