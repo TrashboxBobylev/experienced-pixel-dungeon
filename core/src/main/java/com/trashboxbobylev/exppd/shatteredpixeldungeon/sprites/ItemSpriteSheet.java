@@ -282,7 +282,8 @@ public class ItemSpriteSheet {
 	public static final int FISHING_SPEAR   = MISSILE_WEP+4;
 	public static final int SHURIKEN        = MISSILE_WEP+5;
 	
-	public static final int THROWING_SPEAR  = MISSILE_WEP+7;
+	public static final int THROWING_SPEAR  = MISSILE_WEP+6;
+    public static final int COBALT_SCYTHE  = MISSILE_WEP+7;
 	public static final int BOLAS           = MISSILE_WEP+8;
 	public static final int BOOMERANG       = MISSILE_WEP+9;
 	
@@ -302,7 +303,8 @@ public class ItemSpriteSheet {
 		assignItemRect(FISHING_SPEAR,   11, 11);
 		assignItemRect(SHURIKEN,        12, 12);
 		
-		assignItemRect(THROWING_SPEAR,  13, 13);
+		assignItemRect(THROWING_SPEAR,  11, 11);
+        assignItemRect(COBALT_SCYTHE,  16, 16);
 		assignItemRect(BOLAS,           15, 14);
 		assignItemRect(BOOMERANG,       14, 14);
 		
