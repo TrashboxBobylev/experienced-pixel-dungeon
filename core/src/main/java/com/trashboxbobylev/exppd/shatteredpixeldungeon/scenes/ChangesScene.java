@@ -61,7 +61,9 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.SpiritBow;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.curses.Wayward;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.enchantments.Lucky;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.*;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.CobaltScythe;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.Shuriken;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.ThrowingSpear;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.messages.Messages;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.sprites.CharSprite;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.sprites.ItemSprite;
@@ -135,6 +137,34 @@ public class ChangesScene extends PixelScene {
         changes.hardlight( Window.TITLE_COLOR );
         infos.add(changes);
 
+        changes = new ChangeInfo("v1.2.1", false, null);
+        changes.hardlight( Window.TITLE_COLOR );
+        infos.add(changes);
+
+        changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.RING_AMETHYST, null), Messages.get(RingOfWealth.class, "name"),
+                "_-_ Immense freezes with high-upgraded RoW were fixed.\n"+
+                                    "_-_ To reduce the annoyance, hero with level 50+ will pickup all items in second.\n"+
+                                    "_-_ Now require less exp."));
+
+        changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.EXOTIC_ISAZ, null), Messages.get(ScrollOfPetrification.class, "name"),
+                "The scroll of petrification now properly spawn animated statues."));
+
+        changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.THROWING_SPEAR, null), Messages.get(ThrowingSpear.class, "name"),
+                "The sprite of throwing spear were fixed."));
+
+        changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.COBALT_SCYTHE, null), Messages.get(CobaltScythe.class, "name"),
+                "Added the Cobalt Scythe - tier 6 missile, that upgrades with exp, returns like boomerang and damages enemies in 3x3 area."));
+
+        changes.addButton(new ChangeButton(new Image(Assets.RAT, 0, 0, 15, 16), "Chapter issues",
+                "Depths 27-31 should be accessible finally. I have fixed room issues.\nNew monsters are also added."));
+
+        changes.addButton(new ChangeButton(new Image(Assets.YOG, 0, 0, 19, 18), Messages.get(Yog.class, "name"),
+                "Yog on depth 31 have been buffed."));
+
+        changes.addButton( new ChangeButton( Icons.get(Icons.PREFS), "Misc",
+                "Mind vision got renamed in code."));
+
+
         changes = new ChangeInfo("v1.2", false, null);
         changes.hardlight( Window.TITLE_COLOR );
         infos.add(changes);
@@ -150,9 +180,6 @@ public class ChangesScene extends PixelScene {
                 "_-_ Removed the damage bonus on spirit bow.\n"+
                                         "_-_ Mage's Staff now gets only 2x damage bonus."));
 
-        changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.RING_AMETHYST, null), Messages.get(RingOfWealth.class, "name"),
-                "Immense freezes with high-upgraded RoW were fixed."));
-
         changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.EXOTIC_ISAZ, null), Messages.get(ScrollOfPetrification.class, "name"),
                 "The scroll of petrification now turns all regular enemies into animated statues."));
 
@@ -160,7 +187,7 @@ public class ChangesScene extends PixelScene {
                 "Yog's invincibility has been fixed, making depths 27-31 accessible."));
 
         changes.addButton( new ChangeButton( Icons.get(Icons.DEPTH), "New Chapter enemies",
-                "In depths 27-29 enemies have new advantages:\n\n"+
+                "In depths 27-30 enemies have new advantages:\n\n"+
                                         "_-_ Always hunting hero, even if they are invisible.\n"+
                                         "_-_ Can't be sneaked, until hero hits level 200.\n"+
                                         "_-_ Ignores 80% of defense, until hero hits level 150.\n" +

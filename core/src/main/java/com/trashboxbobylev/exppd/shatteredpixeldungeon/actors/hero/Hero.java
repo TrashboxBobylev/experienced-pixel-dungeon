@@ -44,7 +44,7 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Foresight;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Fury;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Hunger;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Invisibility;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.MindVision;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.MindyVision;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Momentum;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Paralysis;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Regeneration;
@@ -52,7 +52,6 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.SnipersMark;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Vertigo;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Weakness;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.mobs.Mob;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.mobs.npcs.MirrorImage;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.mobs.npcs.NPC;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.effects.CellEmitter;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.effects.CheckedCell;
@@ -81,7 +80,6 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.potions.elixirs.Eli
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.rings.*;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.scrolls.Scroll;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.scrolls.ScrollOfMagicMapping;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.scrolls.ScrollOfTeleportation;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.SpiritBow;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.Weapon;
@@ -503,7 +501,7 @@ public class Hero extends Char {
 		
 		if (!ready) {
 			//do a full observe (including fog update) if not resting.
-			if (!resting || buff(MindVision.class) != null || buff(Awareness.class) != null) {
+			if (!resting || buff(MindyVision.class) != null || buff(Awareness.class) != null) {
 				Dungeon.observe();
 			} else {
 				//otherwise just directly re-calculate FOV

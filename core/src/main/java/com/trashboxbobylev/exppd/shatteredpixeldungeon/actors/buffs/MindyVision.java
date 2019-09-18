@@ -27,7 +27,7 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.scenes.GameScene;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.ui.BuffIndicator;
 import com.watabou.noosa.Image;
 
-public class MindVision extends FlavourBuff {
+public class MindyVision extends FlavourBuff {
 
 	public static final float DURATION = 20f;
 	
