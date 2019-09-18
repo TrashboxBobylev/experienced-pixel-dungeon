@@ -162,7 +162,10 @@ public class ItemSprite extends MovieClip {
 		acc.set(0, -speed.y / DROP_INTERVAL * 2);
 
         RingOfWealth.Wealth buff = Dungeon.hero.buff(RingOfWealth.Wealth.class);
-        boolean coiny = buff == null || buff.level() >= 20;
+        boolean coiny = true;
+        if (buff != null && buff.level() > 20){
+            coiny = false;
+        }
 
 		if (heap != null && heap.seen && heap.peek() instanceof Gold && coiny) {
 			CellEmitter.center( heap.pos ).burst( Speck.factory( Speck.COIN ), 5 );
