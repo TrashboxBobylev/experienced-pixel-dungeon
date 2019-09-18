@@ -66,9 +66,9 @@ public class Yog extends Mob {
 	{
 		spriteClass = YogSprite.class;
 		
-		HP = HT = 300;
+		HP = HT = Dungeon.depth == 31? 100000: 300;
 		
-		EXP = 50;
+		EXP = 500;
 		
 		state = PASSIVE;
 
@@ -100,6 +100,23 @@ public class Yog extends Mob {
 	protected boolean act() {
 		//heals 1 health per turn
 		HP = Math.min( HT, HP+1 );
+
+        ArrayList<Integer> spawnPoints = new ArrayList<>();
+
+        for (int i=0; i < PathFinder.NEIGHBOURS8.length; i++) {
+            int p = pos + PathFinder.NEIGHBOURS8[i];
+            if (Actor.findChar( p ) == null && (Dungeon.level.passable[p] || Dungeon.level.avoid[p])) {
+                spawnPoints.add( p );
+            }
+        }
+
+        if (spawnPoints.size() > 0) {
+            Larva larva = new Larva();
+            larva.pos = Random.element( spawnPoints );
+
+            GameScene.add( larva );
+            Actor.addDelayed( new Pushing( larva, pos, larva.pos ), -1 );
+        }
 
 		return super.act();
 	}
@@ -209,9 +226,9 @@ public class Yog extends Mob {
 		
 		{
 			spriteClass = RottingFistSprite.class;
-			
-			HP = HT = 300;
-			defenseSkill = 25;
+
+            HP = HT = Dungeon.depth == 31? 40000: 300;
+			defenseSkill = Dungeon.depth == 31 ? 400 : 30;
 			
 			EXP = 0;
 			
@@ -224,12 +241,16 @@ public class Yog extends Mob {
 		
 		@Override
 		public int attackSkill( Char target ) {
-			return 36;
+            int i = 36;
+            if (Dungeon.depth == 31) i = 400;
+            return i;
 		}
 		
 		@Override
 		public int damageRoll() {
-			return Random.NormalIntRange( 20, 50 );
+            int i = Random.NormalIntRange(20, 50);
+            if (Dungeon.depth == 31) i *= 15;
+            return i;
 		}
 		
 		@Override
@@ -281,9 +302,9 @@ public class Yog extends Mob {
 		
 		{
 			spriteClass = BurningFistSprite.class;
-			
-			HP = HT = 200;
-			defenseSkill = 25;
+
+            HP = HT = Dungeon.depth == 31? 40000: 300;
+            defenseSkill = Dungeon.depth == 31 ? 400 : 25;
 			
 			EXP = 0;
 			
@@ -293,15 +314,19 @@ public class Yog extends Mob {
 			properties.add(Property.DEMONIC);
 			properties.add(Property.FIERY);
 		}
-		
-		@Override
-		public int attackSkill( Char target ) {
-			return 36;
-		}
+
+        @Override
+        public int attackSkill( Char target ) {
+            int i = 36;
+            if (Dungeon.depth == 31) i = 400;
+            return i;
+        }
 		
 		@Override
 		public int damageRoll() {
-			return Random.NormalIntRange( 26, 32 );
+            int i = Random.NormalIntRange(26, 32);
+            if (Dungeon.depth == 31) i *= 15;
+            return i;
 		}
 		
 		@Override
