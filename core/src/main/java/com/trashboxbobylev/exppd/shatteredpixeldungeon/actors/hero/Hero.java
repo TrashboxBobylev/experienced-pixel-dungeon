@@ -91,6 +91,7 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.enchantments
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.enchantments.Unstable;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.Flail;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.T6Weapon;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.CobaltScythe;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.MissileWeapon;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.journal.Notes;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.levels.Level;
@@ -1312,6 +1313,7 @@ public class Hero extends Char {
 		if (source != PotionOfExperience.class) {
 			for (Item i : belongings) {
 				i.onHeroGainExp(percent, this);
+				if (i instanceof CobaltScythe) ((CobaltScythe) i).gainExp(exp);
 			}
 			if (belongings.weapon instanceof T6Weapon) ((T6Weapon) belongings.weapon).gainExp(exp);
 		}

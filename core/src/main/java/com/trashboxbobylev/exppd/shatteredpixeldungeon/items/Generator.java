@@ -113,16 +113,7 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.wands.WandOfTransfu
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.DoubleKnifes;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.NinjaSword;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.*;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.Bolas;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.FishingSpear;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.Javelin;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.MissileWeapon;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.Shuriken;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.ThrowingHammer;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.ThrowingKnife;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.ThrowingSpear;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.Tomahawk;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.Trident;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.*;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.darts.Dart;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.plants.Blindweed;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.plants.Dreamfoil;
@@ -164,6 +155,7 @@ public class Generator {
 		MIS_T3  ( 0,    MissileWeapon.class ),
 		MIS_T4  ( 0,    MissileWeapon.class ),
 		MIS_T5  ( 0,    MissileWeapon.class ),
+        MIS_T6  ( 0,    MissileWeapon.class ),
 		
 		WAND	( 3,    Wand.class ),
 		RING	( 1,    Ring.class ),
@@ -387,6 +379,11 @@ public class Generator {
 					ThrowingHammer.class
 			};
 			MIS_T5.probs = new float[]{ 4, 3 };
+
+            MIS_T6.classes = new Class<?>[]{
+                    CobaltScythe.class
+            };
+            MIS_T6.probs = new float[]{ 4 };
 			
 			FOOD.classes = new Class<?>[]{
 					Food.class,
@@ -432,7 +429,7 @@ public class Generator {
 			{0, 25, 50, 20,  5, 0},
 			{0, 10, 40, 40, 10, 0},
 			{0,  5, 20, 50, 25, 0},
-			{0,  2,  8, 20, 65, 5},
+			{0,  2,  8, 20, 60, 10},
             {0,  0,  0, 10, 50, 40}
 	};
 	
@@ -544,7 +541,8 @@ public class Generator {
 			Category.MIS_T2,
 			Category.MIS_T3,
 			Category.MIS_T4,
-			Category.MIS_T5
+			Category.MIS_T5,
+            Category.MIS_T6
 	};
 	
 	public static MissileWeapon randomMissile(){
