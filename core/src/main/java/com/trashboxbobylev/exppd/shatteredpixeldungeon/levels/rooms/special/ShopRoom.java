@@ -177,9 +177,12 @@ public class ShopRoom extends SpecialRoom {
 
 		itemsToSpawn.add( new MerchantsBeacon() );
 
-        itemsToSpawn.add( Generator.randomWeapon() );
-        itemsToSpawn.add( Generator.randomMissile() );
-        itemsToSpawn.add( Generator.randomArmor() );
+        itemsToSpawn.add( Generator.randomWeapon().identify() );
+        itemsToSpawn.add( Generator.randomWeapon().identify() );
+        itemsToSpawn.add( Generator.randomMissile().identify() );
+        itemsToSpawn.add( Generator.randomMissile().identify() );
+        itemsToSpawn.add( Generator.randomArmor().identify() );
+        itemsToSpawn.add( Generator.randomArmor().identify() );
 
 		itemsToSpawn.add(ChooseBag(Dungeon.hero.belongings));
 

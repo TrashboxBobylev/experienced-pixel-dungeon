@@ -1,25 +1,19 @@
-Shattered Pixel Dungeon
+Experienced Pixel Dungeon
 =======================
 
 A Roguelike RPG, with randomly generated levels, items, enemies, and traps!
-Based on the source code of Pixel Dungeon, by Watabou.
 
-Shattered Pixel Dungeon uses gradle and is most easily compiled/edited using Android Studio.
+Features the removed leveling cap and many Sprouted PD-like features.
+Based on the source code of Shattered Pixel Dungeon, by 00-Evan.
 
-Shattered Pixel Dungeon on Google Play:
-https://play.google.com/store/apps/details?id=com.trashboxbobylev.exppd.shatteredpixeldungeon
+Experienced Pixel Dungeon uses Gradle and is most easily compiled/edited using Android Studio or IntelliJ IDEA.
 
-On Amazon:
-https://www.amazon.com/Shattered-Pixel-Dungeon/dp/B00OH2C21M
+Official r/PixelDungeon post: 
+http://www.reddit.com/r/PixelDungeon/comments/d4mra7/
 
-On F-Droid (Which compiles directly from this source code):
-https://f-droid.org/repository/browse/?fdid=com.trashboxbobylev.exppd.shatteredpixeldungeon
+Source code of original Shattered Pixel Dungeon:
+https://github.com/00-Evan/shattered-pixel-dungeon
 
-Official web-site: 
-http://www.shatteredpixel.com
+Nightly builds can be accessed from *autobuild* branch.
 
-Developer's blog: 
-http://shatteredpixel.tumblr.com/
-
-Source code of original Pixel Dungeon:
-https://github.com/watabou/pixel-dungeon
+You can find me in Discord or on https://vk.com/trashboxbobylev.

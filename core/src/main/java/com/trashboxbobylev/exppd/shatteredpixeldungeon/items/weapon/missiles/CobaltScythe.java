@@ -9,6 +9,7 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.messages.Messages;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.sprites.MissileSprite;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.utils.GLog;
+import com.watabou.utils.Bundle;
 import com.watabou.utils.PathFinder;
 
 public class CobaltScythe extends MissileWeapon {
@@ -25,11 +26,26 @@ public class CobaltScythe extends MissileWeapon {
                 lvl;
     }
 
-    public void gainExp( int exp ) {
-        if (exp >= 500){
-            while (exp >= 500){
+    public int exp;
+
+    @Override
+    public void storeInBundle(Bundle bundle) {
+        super.storeInBundle(bundle);
+        bundle.put("exp", exp);
+    }
+
+    @Override
+    public void restoreFromBundle(Bundle bundle) {
+        super.restoreFromBundle(bundle);
+        exp = bundle.getInt("exp");
+    }
+
+    public void gainExp(int exp ) {
+        this.exp += exp;
+        if (this.exp >= 500){
+            while (this.exp >= 500){
                 upgrade();
-                exp -= 500;
+                this.exp -= 500;
             }
         }
     }

@@ -58,7 +58,7 @@ public class RingOfWealth extends Ring {
 	
 	public String statsInfo() {
 		if (isIdentified()){
-			return Messages.get(this, "stats", new DecimalFormat("#.##").format(100f * (Math.pow(1.2f, soloBonus()) - 1f)));
+			return Messages.get(this, "stats", new DecimalFormat("#.##").format(100f * (Math.pow(1.4f, soloBonus()) - 1f)));
 		} else {
 			return Messages.get(this, "typical_stats", new DecimalFormat("#.##").format(20f));
 		}
@@ -110,8 +110,8 @@ public class RingOfWealth extends Ring {
 
 		//reset (if needed), decrement, and store counts
 		if (triesToDrop == Float.MIN_VALUE) {
-			triesToDrop = Random.NormalIntRange(0, 60);
-			dropsToRare = Random.NormalIntRange(0, 20);
+			triesToDrop = Random.NormalIntRange(0, 80);
+			dropsToRare = Random.NormalIntRange(0, 30);
 		}
 
 		//now handle reward logic
@@ -122,12 +122,12 @@ public class RingOfWealth extends Ring {
 			if (dropsToRare <= 0){
 				drops.add(genRareDrop());
 				latestDropWasRare = true;
-				dropsToRare = Random.NormalIntRange(0, 20);
+				dropsToRare = Random.NormalIntRange(0, 30);
 			} else {
 				drops.add(genStandardDrop());
 				dropsToRare--;
 			}
-			triesToDrop += Random.NormalIntRange(0, 60);
+			triesToDrop += Random.NormalIntRange(0, 80);
 		}
 
 		//store values back into rings
@@ -205,8 +205,13 @@ public class RingOfWealth extends Ring {
 	}
 	
 	private static float dropProgression( Char target, int tries ){
-		return tries * (float)Math.pow(1.2f, getBonus(target, Wealth.class) );
+		return tries * (float)Math.pow(1.4f, getBonus(target, Wealth.class) );
 	}
+
+    @Override
+    public boolean isUpgradable() {
+        return false;
+    }
 
     public class Wealth extends RingBuff {
 		
@@ -228,14 +233,12 @@ public class RingOfWealth extends Ring {
 
 		public void addExp(int expi){
 		    exp += expi;
-            if (exp >= 90){
-                while (exp >= 90) {
+            if (exp >= 60){
+                while (exp >= 60 && level() < 20) {
                     upgrade();
-                    exp -= 90;
+                    exp -= 60;
                 }
-                GameScene.flash(0x00000);
                 GLog.p(Messages.get(RingOfWealth.class, "levelup"));
-                exp = 0;
             }
         }
     }

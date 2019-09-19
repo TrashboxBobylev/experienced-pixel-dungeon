@@ -63,7 +63,7 @@ public class MagicalSleep extends Buff {
 			detach();
 			return true;
 		}
-        if (target instanceof DepthyMob && (((Mob) target).state != ((Mob) target).SLEEPING) || Random.Float() < 0.25f){
+        if (target instanceof DepthyMob && (((Mob) target).state != ((Mob) target).SLEEPING) && Random.Float() < 0.25f){
             detach();
             return true;
         }

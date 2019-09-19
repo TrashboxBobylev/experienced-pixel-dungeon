@@ -23,6 +23,7 @@ package com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.mobs;
 
 import com.watabou.utils.Random;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -172,6 +173,8 @@ public class Bestiary {
                 return new ArrayList<>(Arrays.asList(GooSupreme.class, GooSupreme.class, GooSupreme.class, DM3000.class, Brute.class));
             case 30:
                 return new ArrayList<>(Arrays.asList(MonkSupreme.class, Eye.class, GooSupreme.class, Warlock.class, CrabSupreme.class));
+            case 31:
+                return new ArrayList<Class<? extends Mob>>(Arrays.asList(SCP682.class));
         }
 		
 	}

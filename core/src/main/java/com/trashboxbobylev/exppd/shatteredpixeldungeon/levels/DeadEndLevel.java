@@ -24,10 +24,11 @@ package com.trashboxbobylev.exppd.shatteredpixeldungeon.levels;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.Assets;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.Actor;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.mobs.Mob;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.mobs.SCP682;
 
 public class DeadEndLevel extends Level {
 
-	private static final int SIZE = 5;
+	private static final int SIZE = 8;
 	
 	{
 		color1 = 0x534f3e;
@@ -70,14 +71,15 @@ public class DeadEndLevel extends Level {
 		
 		return true;
 	}
-	
+
 	@Override
 	public Mob createMob() {
-		return null;
+		return new SCP682();
 	}
-	
+
 	@Override
 	protected void createMobs() {
+	    mobs.add(createMob());
 	}
 
 	public Actor respawner() {

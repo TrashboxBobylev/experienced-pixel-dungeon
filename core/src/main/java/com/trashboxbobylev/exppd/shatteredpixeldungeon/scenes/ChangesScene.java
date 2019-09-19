@@ -137,6 +137,36 @@ public class ChangesScene extends PixelScene {
         changes.hardlight( Window.TITLE_COLOR );
         infos.add(changes);
 
+        changes = new ChangeInfo("v1.2.2", false, null);
+        changes.hardlight( Window.TITLE_COLOR );
+        infos.add(changes);
+
+        changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.RING_HOLDER, null), "3th slot",
+                "_-_ Added 3rd ring slot to handle your lovely builds.\n"));
+
+        changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.RING_AMETHYST, null), Messages.get(RingOfWealth.class, "name"),
+                "_-_ The luck stat grows quicker.\n"+
+                        "_-_ The amount of loot rolls have been increased.\n"+
+                        "_-_ Now require even less exp, but capped at +19."));
+
+        changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.ARTIFACT_BELT, null), Messages.get(ExpBelt.class, "name"),
+                "The experience band require a bit less exp to upgrade."));
+
+        changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.SWIFTSWORD, null), "T6 Weapons upgrading",
+                "Tier 6 weapons now can store exp."));
+
+        changes.addButton( new ChangeButton( Icons.get(Icons.DEPTH), "Chapter issues",
+                "I do not know where new chapter generating should fail, so it's accessible now. Finally."));
+
+        changes.addButton(new ChangeButton(new Image(Assets.RAT, 0, 0, 15, 16), "New monsters",
+                "Added a very fun monster on depth 31."));
+
+        changes.addButton(new ChangeButton(new Image(Assets.KEEPER, 0, 0, 14, 16), "Shop Adjustments",
+                "Random armor, weapon and missile in shop are identified."));
+
+        changes.addButton( new ChangeButton(new Image(Assets.SPINNER, 144, 0, 16, 16), Messages.get(this, "bugfixes"),
+                "_-_ Fixed the magical sleep.\n"));
+
         changes = new ChangeInfo("v1.2.1a", false, null);
         changes.hardlight( Window.TITLE_COLOR );
         infos.add(changes);

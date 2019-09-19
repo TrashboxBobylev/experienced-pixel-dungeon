@@ -28,6 +28,8 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.effects.Ripple;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.DewVial;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.artifacts.ExpBelt;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.rings.RingOfWealth;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.spells.BeaconOfReturning;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.Halberd;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.levels.painters.Painter;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.levels.painters.SewerPainter;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.levels.traps.AlarmTrap;
@@ -110,11 +112,12 @@ public class SewerLevel extends RegularLevel {
 	protected void createItems() {
 		if (!Dungeon.LimitedDrops.DEW_VIAL.dropped()) {
 			addItemToSpawn( new DewVial() );
-			addItemToSpawn(new ExpBelt());
+			addItemToSpawn(new ExpBelt().identify());
             RingOfWealth ring = new RingOfWealth();
             ring.level(1);
             ring.cursed = false;
             addItemToSpawn(ring.identify());
+            addItemToSpawn(new Halberd().identify());
 			Dungeon.LimitedDrops.DEW_VIAL.drop();
 		}
 

@@ -35,21 +35,23 @@ public abstract class KindofMisc extends EquipableItem {
 	@Override
 	public boolean doEquip(final Hero hero) {
 
-		if (hero.belongings.misc1 != null && hero.belongings.misc2 != null) {
+		if (hero.belongings.misc1 != null && hero.belongings.misc2 != null && hero.belongings.misc3 != null) {
 
 			final KindofMisc m1 = hero.belongings.misc1;
 			final KindofMisc m2 = hero.belongings.misc2;
+            final KindofMisc m3 = hero.belongings.misc3;
 
 			GameScene.show(
 					new WndOptions(Messages.get(KindofMisc.class, "unequip_title"),
 							Messages.get(KindofMisc.class, "unequip_message"),
 							Messages.titleCase(m1.toString()),
-							Messages.titleCase(m2.toString())) {
+							Messages.titleCase(m2.toString()),
+                            Messages.titleCase(m3.toString())) {
 
 						@Override
 						protected void onSelect(int index) {
 
-							KindofMisc equipped = (index == 0 ? m1 : m2);
+							KindofMisc equipped = (index == 0 ? m1 :  (index == 2 ? m3 : m2));
 							//temporarily give 1 extra backpack spot to support swapping with a full inventory
 							hero.belongings.backpack.size++;
 							if (equipped.doUnequip(hero, true, false)) {
@@ -66,7 +68,9 @@ public abstract class KindofMisc extends EquipableItem {
 
 			if (hero.belongings.misc1 == null) {
 				hero.belongings.misc1 = this;
-			} else {
+			} else if (hero.belongings.misc3 == null) {
+                hero.belongings.misc3 = this;
+            } else {
 				hero.belongings.misc2 = this;
 			}
 
@@ -93,7 +97,9 @@ public abstract class KindofMisc extends EquipableItem {
 
 			if (hero.belongings.misc1 == this) {
 				hero.belongings.misc1 = null;
-			} else {
+			} else if (hero.belongings.misc3 == this) {
+                hero.belongings.misc3 = null;
+            } else {
 				hero.belongings.misc2 = null;
 			}
 
@@ -108,7 +114,7 @@ public abstract class KindofMisc extends EquipableItem {
 
 	@Override
 	public boolean isEquipped( Hero hero ) {
-		return hero.belongings.misc1 == this || hero.belongings.misc2 == this;
+		return hero.belongings.misc1 == this || hero.belongings.misc2 == this || hero.belongings.misc3 == this;
 	}
 
 }

@@ -41,7 +41,7 @@ import java.util.Iterator;
 
 public class Belongings implements Iterable<Item> {
 
-	public static final int BACKPACK_SIZE	= 20;
+	public static final int BACKPACK_SIZE	= 40;
 	
 	private Hero owner;
 	
@@ -51,6 +51,7 @@ public class Belongings implements Iterable<Item> {
 	public Armor armor = null;
 	public KindofMisc misc1 = null;
 	public KindofMisc misc2 = null;
+    public KindofMisc misc3 = null;
 	
 	public Belongings( Hero owner ) {
 		this.owner = owner;
@@ -66,6 +67,7 @@ public class Belongings implements Iterable<Item> {
 	private static final String ARMOR		= "armor";
 	private static final String MISC1       = "misc1";
 	private static final String MISC2       = "misc2";
+    private static final String MISC3       = "misc3";
 
 	public void storeInBundle( Bundle bundle ) {
 		
@@ -75,6 +77,7 @@ public class Belongings implements Iterable<Item> {
 		bundle.put( ARMOR, armor );
 		bundle.put( MISC1, misc1);
 		bundle.put( MISC2, misc2);
+        bundle.put( MISC3, misc3);
 	}
 	
 	public void restoreFromBundle( Bundle bundle ) {
@@ -101,6 +104,11 @@ public class Belongings implements Iterable<Item> {
 		if (misc2 != null) {
 			misc2.activate( owner );
 		}
+
+        misc3 = (KindofMisc)bundle.get(MISC3);
+        if (misc3 != null) {
+            misc3.activate( owner );
+        }
 	}
 	
 	public static void preview( GamesInProgress.Info info, Bundle bundle ) {
@@ -232,6 +240,10 @@ public class Belongings implements Iterable<Item> {
 			misc2.cursed = false;
 			misc2.activate( owner );
 		}
+        if (misc3 != null) {
+            misc3.cursed = false;
+            misc3.activate( owner );
+        }
 	}
 	
 	public int charge( float charge ) {
@@ -257,7 +269,7 @@ public class Belongings implements Iterable<Item> {
 		
 		private Iterator<Item> backpackIterator = backpack.iterator();
 		
-		private Item[] equipped = {weapon, armor, misc1, misc2};
+		private Item[] equipped = {weapon, armor, misc1, misc2, misc3};
 		private int backpackIndex = equipped.length;
 		
 		@Override
@@ -300,6 +312,9 @@ public class Belongings implements Iterable<Item> {
 			case 3:
 				equipped[3] = misc2 = null;
 				break;
+                case 4:
+                    equipped[4] = misc3 = null;
+                    break;
 			default:
 				backpackIterator.remove();
 			}

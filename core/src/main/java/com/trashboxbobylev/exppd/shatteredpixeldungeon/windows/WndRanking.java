@@ -50,7 +50,7 @@ import java.util.Locale;
 public class WndRanking extends WndTabbed {
 	
 	private static final int WIDTH			= 115;
-	private static final int HEIGHT			= 144;
+	private static final int HEIGHT			= 173;
 	
 	private static Thread thread;
 	private String error = null;
@@ -238,6 +238,9 @@ public class WndRanking extends WndTabbed {
 			if (stuff.misc2 != null) {
 				addItem( stuff.misc2);
 			}
+            if (stuff.misc3 != null) {
+                addItem( stuff.misc3);
+            }
 
 			pos = 0;
 			for (int i = 0; i < 4; i++){

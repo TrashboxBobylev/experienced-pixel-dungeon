@@ -217,6 +217,7 @@ public class WndBag extends WndTabbed {
 		placeItem( stuff.armor != null ? stuff.armor : new Placeholder( ItemSpriteSheet.ARMOR_HOLDER ) );
 		placeItem( stuff.misc1 != null ? stuff.misc1 : new Placeholder( ItemSpriteSheet.RING_HOLDER ) );
 		placeItem( stuff.misc2 != null ? stuff.misc2 : new Placeholder( ItemSpriteSheet.RING_HOLDER ) );
+        placeItem( stuff.misc3 != null ? stuff.misc3 : new Placeholder( ItemSpriteSheet.RING_HOLDER ) );
 
 		// Items in the bag
 		for (Item item : container.items.toArray(new Item[0])) {

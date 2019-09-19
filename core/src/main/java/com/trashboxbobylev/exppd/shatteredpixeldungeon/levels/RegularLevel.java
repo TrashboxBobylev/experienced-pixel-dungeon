@@ -175,6 +175,8 @@ public abstract class RegularLevel extends Level {
 			case 1:
 				//mobs are not randomly spawned on floor 1.
 				return 0;
+            case 31:
+                return 5;
 			default:
 				return 2 + Dungeon.depth % 5 + Random.Int(5);
 		}
@@ -199,6 +201,8 @@ public abstract class RegularLevel extends Level {
 	protected void createMobs() {
 		//on floor 1, 10 rats are created so the player can get level 2.
 		int mobsToSpawn = Dungeon.depth == 1 ? 10 : nMobs();
+
+		mobsToSpawn = Dungeon.depth == 31 ? 1 : mobsToSpawn;
 
 		ArrayList<Room> stdRooms = new ArrayList<>();
 		for (Room room : rooms) {
