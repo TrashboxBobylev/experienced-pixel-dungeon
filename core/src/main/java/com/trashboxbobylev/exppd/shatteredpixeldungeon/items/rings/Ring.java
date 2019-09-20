@@ -311,6 +311,7 @@ public class Ring extends KindofMisc {
 		int bonus = 0;
 		for (RingBuff buff : target.buffs(type)) {
 			bonus += buff.level();
+			if (buff instanceof RingOfWealth.Wealth && buff.level() > 20) bonus = 20;
 		}
 		return bonus;
 	}

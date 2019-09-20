@@ -4,6 +4,7 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.Dungeon;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.Char;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Corruption;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.Amulet;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.sprites.FetidRatSprite;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.sprites.HeroSprite;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.sprites.RatSprite;
 import com.watabou.utils.Bundle;
@@ -14,7 +15,7 @@ public class SCP682 extends Mob {
     public int numberHits;
 
     {
-        spriteClass = HeroSprite.class;
+        spriteClass = FetidRatSprite.class;
 
         HP = HT = Integer.MAX_VALUE;
         defenseSkill = Dungeon.hero.defenseSkill(this);
@@ -22,6 +23,7 @@ public class SCP682 extends Mob {
 
         numberHits = 500;
         baseSpeed = 20f;
+        viewDistance = 4;
 
         loot = new Amulet();
         lootChance = 1f;
@@ -47,7 +49,7 @@ public class SCP682 extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.IntRange( Integer.MIN_VALUE, Integer.MAX_VALUE );
+        return Random.Int(800000000);
     }
 
     @Override

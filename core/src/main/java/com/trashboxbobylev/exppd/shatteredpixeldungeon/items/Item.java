@@ -104,7 +104,7 @@ public class Item implements Bundlable {
 			
 			GameScene.pickUp( this, hero.pos );
 			Sample.INSTANCE.play( Assets.SND_ITEM );
-			hero.spendAndNext( hero.lvl > 60 ? 0f: TIME_TO_PICK_UP );
+			if (hero.lvl < 50) hero.spendAndNext(  TIME_TO_PICK_UP );
 			return true;
 			
 		} else {

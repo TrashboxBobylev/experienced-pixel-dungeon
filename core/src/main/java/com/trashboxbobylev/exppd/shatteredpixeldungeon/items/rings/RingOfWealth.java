@@ -208,6 +208,8 @@ public class RingOfWealth extends Ring {
 		return tries * (float)Math.pow(1.4f, getBonus(target, Wealth.class) );
 	}
 
+
+
     @Override
     public boolean isUpgradable() {
         return false;
@@ -233,7 +235,7 @@ public class RingOfWealth extends Ring {
 
 		public void addExp(int expi){
 		    exp += expi;
-            if (exp >= 60){
+            if (exp >= 60 && level() < 20){
                 while (exp >= 60 && level() < 20) {
                     upgrade();
                     exp -= 60;

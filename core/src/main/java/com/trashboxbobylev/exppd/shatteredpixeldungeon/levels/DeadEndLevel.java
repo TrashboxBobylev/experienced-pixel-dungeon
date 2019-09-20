@@ -28,7 +28,7 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.mobs.SCP682;
 
 public class DeadEndLevel extends Level {
 
-	private static final int SIZE = 8;
+	private static final int SIZE = 5;
 	
 	{
 		color1 = 0x534f3e;
@@ -74,7 +74,9 @@ public class DeadEndLevel extends Level {
 
 	@Override
 	public Mob createMob() {
-		return new SCP682();
+        SCP682 scp682 = new SCP682();
+        scp682.pos = entrance + 2;
+        return scp682;
 	}
 
 	@Override

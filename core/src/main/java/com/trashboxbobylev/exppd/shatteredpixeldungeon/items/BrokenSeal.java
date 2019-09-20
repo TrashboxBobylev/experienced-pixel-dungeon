@@ -28,10 +28,12 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.hero.Hero;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.armor.Armor;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.messages.Messages;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.scenes.GameScene;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.scenes.InterlevelScene;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.utils.GLog;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.windows.WndBag;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.windows.WndItem;
+import com.watabou.noosa.Game;
 import com.watabou.noosa.audio.Sample;
 
 import java.util.ArrayList;
@@ -39,6 +41,7 @@ import java.util.ArrayList;
 public class BrokenSeal extends Item {
 
 	public static final String AC_AFFIX = "AFFIX";
+    public static final String AC_CRUSH = "CRUSH";
 
 	//only to be used from the quickslot, for tutorial purposes mostly.
 	public static final String AC_INFO = "INFO_WINDOW";
@@ -70,7 +73,10 @@ public class BrokenSeal extends Item {
 			GameScene.selectItem(armorSelector, WndBag.Mode.ARMOR, Messages.get(this, "prompt"));
 		} else if (action.equals(AC_INFO)) {
 			GameScene.show(new WndItem(null, this, true));
-		}
+		} else if (action.equals(AC_CRUSH)){
+            InterlevelScene.mode = InterlevelScene.Mode.DESCEND;
+            Game.switchScene(InterlevelScene.class);
+        }
 	}
 
 	@Override

@@ -112,7 +112,7 @@ public class InterlevelScene extends PixelScene {
 					if (!(Statistics.deepestFloor < loadingDepth)) {
 						fadeTime = FAST_FADE;
 					} else if (loadingDepth == 6 || loadingDepth == 11
-							|| loadingDepth == 16 || loadingDepth == 22) {
+							|| loadingDepth == 16 || loadingDepth == 22 || loadingDepth == 27) {
 						fadeTime = SLOW_FADE;
 					}
 				}
@@ -299,6 +299,7 @@ public class InterlevelScene extends PixelScene {
 					}
 				} );
 				thread = null;
+				ShatteredPixelDungeon.reportException(error);
 				error = null;
 			} else if (thread != null && (int)waitingTime == 10){
 				waitingTime = 11f;

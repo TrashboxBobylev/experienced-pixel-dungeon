@@ -163,7 +163,7 @@ public class ItemSprite extends MovieClip {
 
         RingOfWealth.Wealth buff = Dungeon.hero.buff(RingOfWealth.Wealth.class);
         boolean coiny = true;
-        if (buff != null && buff.level() > 20){
+        if (buff != null && buff.level() > 10){
             coiny = false;
         }
 

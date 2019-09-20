@@ -56,6 +56,7 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Terror;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Vertigo;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.hero.Hero;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.hero.HeroSubClass;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.mobs.SCP682;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.BrokenSeal;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.armor.glyphs.Brimstone;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.armor.glyphs.Potential;
@@ -326,7 +327,7 @@ public abstract class Char extends Actor {
 	
 	public void damage( int dmg, Object src ) {
 		
-		if (!isAlive() || dmg < 0) {
+		if (!isAlive() || dmg < 0 ) {
 			return;
 		}
 		Terror t = buff(Terror.class);

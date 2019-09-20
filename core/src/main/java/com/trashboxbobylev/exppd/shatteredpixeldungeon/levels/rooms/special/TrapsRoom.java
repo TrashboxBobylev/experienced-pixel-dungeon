@@ -31,16 +31,7 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.potions.PotionOfLev
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.levels.Level;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.levels.Terrain;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.levels.painters.Painter;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.levels.traps.DisintegrationTrap;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.levels.traps.ExplosiveTrap;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.levels.traps.FlashingTrap;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.levels.traps.FlockTrap;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.levels.traps.GrimTrap;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.levels.traps.GrippingTrap;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.levels.traps.PoisonDartTrap;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.levels.traps.TeleportationTrap;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.levels.traps.Trap;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.levels.traps.WarpingTrap;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.levels.traps.*;
 import com.watabou.utils.Point;
 import com.watabou.utils.Random;
 
@@ -155,6 +146,9 @@ public class TrapsRoom extends SpecialRoom {
 			//city
 			{WarpingTrap.class, FlashingTrap.class, DisintegrationTrap.class},
 			//halls, muahahahaha
-			{GrimTrap.class}
+			{GrimTrap.class},
+            //shadows
+            {UltimateTrap.class},
+            {UltimateTrap.class}
 	};
 }

@@ -27,23 +27,14 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.Char;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.blobs.Blob;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.blobs.Fire;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.blobs.ToxicGas;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Amok;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Buff;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Burning;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Charm;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.LockedFloor;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Ooze;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Paralysis;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Poison;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Sleep;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Terror;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Vertigo;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.*;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.effects.Pushing;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.effects.particles.ShadowParticle;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.keys.SkeletonKey;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.scrolls.ScrollOfRetribution;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfPsionicBlast;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.enchantments.Grim;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.enchantments.Precise;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.mechanics.Ballistica;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.messages.Messages;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.scenes.GameScene;
@@ -66,8 +57,6 @@ public class Yog extends Mob {
 	{
 		spriteClass = YogSprite.class;
 		
-		HP = HT = Dungeon.depth == 31? 100000: 300;
-		
 		EXP = 500;
 		
 		state = PASSIVE;
@@ -79,6 +68,7 @@ public class Yog extends Mob {
 	
 	public Yog() {
 		super();
+        HP = HT = Dungeon.depth == 31? 100000: 300;
 	}
 	
 	public void spawnFists() {
@@ -114,6 +104,10 @@ public class Yog extends Mob {
             Larva larva = new Larva();
             larva.pos = Random.element( spawnPoints );
 
+            if (Dungeon.depth == 31){
+                larva.HT = larva.HP = 18000;
+                larva.defenseSkill = 300;
+            }
             GameScene.add( larva );
             Actor.addDelayed( new Pushing( larva, pos, larva.pos ), -1 );
         }
@@ -226,9 +220,6 @@ public class Yog extends Mob {
 		
 		{
 			spriteClass = RottingFistSprite.class;
-
-            HP = HT = Dungeon.depth == 31? 40000: 300;
-			defenseSkill = Dungeon.depth == 31 ? 400 : 30;
 			
 			EXP = 0;
 			
@@ -238,8 +229,14 @@ public class Yog extends Mob {
 			properties.add(Property.DEMONIC);
 			properties.add(Property.ACIDIC);
 		}
-		
-		@Override
+
+        public RottingFist() {
+		    super();
+            HP = HT = Dungeon.depth == 31? 40000: 300;
+            defenseSkill = Dungeon.depth == 31 ? 400 : 30;
+        }
+
+        @Override
 		public int attackSkill( Char target ) {
             int i = 36;
             if (Dungeon.depth == 31) i = 400;
@@ -302,9 +299,6 @@ public class Yog extends Mob {
 		
 		{
 			spriteClass = BurningFistSprite.class;
-
-            HP = HT = Dungeon.depth == 31? 40000: 300;
-            defenseSkill = Dungeon.depth == 31 ? 400 : 25;
 			
 			EXP = 0;
 			
@@ -314,6 +308,12 @@ public class Yog extends Mob {
 			properties.add(Property.DEMONIC);
 			properties.add(Property.FIERY);
 		}
+
+        public BurningFist() {
+		    super();
+            HP = HT = Dungeon.depth == 31? 40000: 300;
+            defenseSkill = Dungeon.depth == 31 ? 400 : 25;
+        }
 
         @Override
         public int attackSkill( Char target ) {
@@ -412,7 +412,7 @@ public class Yog extends Mob {
 		
 		@Override
 		public int attackSkill( Char target ) {
-			return 30;
+			return 18000000;
 		}
 		
 		@Override

@@ -31,7 +31,7 @@ public class VelvetPouch extends Bag {
 	{
 		image = ItemSpriteSheet.POUCH;
 		
-		size = 20;
+		size = 40;
 	}
 	
 	@Override

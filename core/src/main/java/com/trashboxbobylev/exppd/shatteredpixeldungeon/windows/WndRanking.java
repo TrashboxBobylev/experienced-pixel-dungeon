@@ -247,14 +247,14 @@ public class WndRanking extends WndTabbed {
 				if (Dungeon.quickslot.getItem(i) != null){
 					QuickSlotButton slot = new QuickSlotButton(Dungeon.quickslot.getItem(i));
 
-					slot.setRect( pos, 116, 28, 28 );
+					slot.setRect( pos, 145, 28, 28 );
 
 					add(slot);
 
 				} else {
 					ColorBlock bg = new ColorBlock( 28, 28, 0x9953564D );
 					bg.x = pos;
-					bg.y = 116;
+					bg.y = 145;
 					add(bg);
 				}
 				pos += 29;

@@ -55,11 +55,11 @@ public class SewerSuperLevel extends RegularLevel {
 		return 10+Random.chances(new float[]{4, 2, 1});
 	}
 
-	@Override
-	protected int specialRooms() {
-		//4 to 6, average 5
-		return 4+Random.chances(new float[]{4, 4, 2});
-	}
+    @Override
+    protected int specialRooms() {
+        //4 to 6, average 5
+        return 4+Random.chances(new float[]{4, 4, 2});
+    }
 
 
 

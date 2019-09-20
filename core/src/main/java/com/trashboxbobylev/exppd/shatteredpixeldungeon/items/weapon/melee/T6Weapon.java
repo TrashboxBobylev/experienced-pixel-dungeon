@@ -1,6 +1,9 @@
 package com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee;
 
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.Dungeon;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.hero.Hero;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.Weapon;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.messages.Messages;
 import com.watabou.utils.Bundle;
 
 public class T6Weapon extends MeleeWeapon {
@@ -30,5 +33,12 @@ public class T6Weapon extends MeleeWeapon {
                 this.exp -= 500;
             }
         }
+    }
+
+    @Override
+    public String info() {
+        String inf = super.info();
+        inf += " " + Messages.get(T6Weapon.class, "exp", 500 - exp);
+        return inf;
     }
 }

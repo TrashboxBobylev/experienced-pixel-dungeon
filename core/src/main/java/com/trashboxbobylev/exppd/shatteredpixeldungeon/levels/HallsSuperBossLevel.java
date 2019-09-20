@@ -97,7 +97,7 @@ public class HallsSuperBossLevel extends Level {
 		
 		setSize(75, 75);
 		
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 10; i++) {
 			
 			int top = Random.IntRange(2, ROOM_TOP - 1);
 			int bottom = Random.IntRange(ROOM_BOTTOM + 1, 22);

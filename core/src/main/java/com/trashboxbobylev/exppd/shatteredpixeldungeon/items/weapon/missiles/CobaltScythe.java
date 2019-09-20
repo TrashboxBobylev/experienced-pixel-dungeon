@@ -4,6 +4,7 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.Dungeon;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.Actor;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.Char;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.hero.Hero;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.T6Weapon;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.mechanics.Ballistica;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.messages.Messages;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.sprites.ItemSpriteSheet;
@@ -48,6 +49,13 @@ public class CobaltScythe extends MissileWeapon {
                 this.exp -= 500;
             }
         }
+    }
+
+    @Override
+    public String info() {
+        String inf = super.info();
+        inf += " " + Messages.get(T6Weapon.class, "exp", 500 - exp);
+        return inf;
     }
 
     @Override

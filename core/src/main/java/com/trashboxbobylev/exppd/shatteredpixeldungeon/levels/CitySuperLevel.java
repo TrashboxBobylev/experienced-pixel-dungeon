@@ -50,8 +50,8 @@ public class CitySuperLevel extends RegularLevel {
 
     @Override
     protected int specialRooms() {
-        //8 to 10, average 9
-        return 8+Random.chances(new float[]{4, 4, 2});
+        //4 to 6, average 5
+        return 4+Random.chances(new float[]{4, 4, 2});
     }
 
 	@Override

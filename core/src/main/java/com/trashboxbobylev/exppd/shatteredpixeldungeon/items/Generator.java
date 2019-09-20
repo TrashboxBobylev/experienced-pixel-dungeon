@@ -23,12 +23,7 @@ package com.trashboxbobylev.exppd.shatteredpixeldungeon.items;
 
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.Dungeon;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.ShatteredPixelDungeon;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.armor.Armor;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.armor.ClothArmor;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.armor.LeatherArmor;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.armor.MailArmor;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.armor.PlateArmor;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.armor.ScaleArmor;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.armor.*;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.artifacts.AlchemistsToolkit;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.artifacts.Artifact;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.artifacts.CapeOfThorns;
@@ -343,8 +338,9 @@ public class Generator {
 					LeatherArmor.class,
 					MailArmor.class,
 					ScaleArmor.class,
-					PlateArmor.class };
-			ARMOR.probs = new float[]{ 0, 0, 0, 0, 0 };
+					PlateArmor.class,
+                    EchArmor.class};
+			ARMOR.probs = new float[]{ 0, 0, 0, 0, 0,0 };
 			
 			//see Generator.randomMissile
 			MISSILE.classes = new Class<?>[]{};

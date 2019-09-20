@@ -45,8 +45,8 @@ public abstract class SecretRoom extends SpecialRoom {
 
 	//this is the number of secret rooms per region (whole value),
 	// plus the chance for an extra secret room (fractional value)
-	private static float[] baseRegionSecrets = new float[]{1.4f, 1.8f, 2.2f, 2.6f, 3.0f, 4.0f};
-	private static int[] regionSecretsThisRun = new int[6];
+	private static float[] baseRegionSecrets = new float[]{1.4f, 1.8f, 2.2f, 2.6f, 3.0f, 4.0f, 4.0f};
+	private static int[] regionSecretsThisRun = new int[7];
 	
 	public static void initForRun(){
 		
@@ -72,6 +72,7 @@ public abstract class SecretRoom extends SpecialRoom {
 	
 	public static int secretsForFloor(int depth){
 		if (depth == 1) return 0;
+		if (depth > 29) return 2;
 		
 		int region = depth/5;
 		int floor = depth%5;
@@ -79,18 +80,14 @@ public abstract class SecretRoom extends SpecialRoom {
 		int floorsLeft = 5 - floor;
 		
 		float secrets;
-		if (floorsLeft == 0) {
-			secrets = regionSecretsThisRun[region];
-		} else {
-			secrets = regionSecretsThisRun[region] / floorsLeft;
-			if (Random.Float() < secrets % 1f){
-				secrets = (float)Math.ceil(secrets);
-			} else {
-				secrets = (float)Math.floor(secrets);
-			}
-		}
-		
-		regionSecretsThisRun[region] -= (int)secrets;
+        secrets = regionSecretsThisRun[region] / floorsLeft;
+        if (Random.Float() < secrets % 1f){
+            secrets = (float)Math.ceil(secrets);
+        } else {
+            secrets = (float)Math.floor(secrets);
+        }
+
+        regionSecretsThisRun[region] -= (int)secrets;
 		return (int)secrets;
 	}
 	

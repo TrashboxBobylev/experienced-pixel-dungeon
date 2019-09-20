@@ -137,6 +137,31 @@ public class ChangesScene extends PixelScene {
         changes.hardlight( Window.TITLE_COLOR );
         infos.add(changes);
 
+        changes = new ChangeInfo("v1.2.3", false, null);
+        changes.hardlight( Window.TITLE_COLOR );
+        infos.add(changes);
+
+        changes.addButton( new ChangeButton( Icons.get(Icons.DEPTH), "Chapter issues",
+                "It's fixed. For real."));
+
+        changes.addButton( new ChangeButton(Icons.get(Icons.BACKPACK), "WndBag issues",
+                "Adjusted slot sizes to make inventory smaller."));
+
+        changes.addButton(new ChangeButton(new Image(Assets.YOG, 0, 0, 19, 18), Messages.get(Yog.class, "name"),
+                "Yog on depth 31 have been buffed again."));
+
+        changes.addButton( new ChangeButton(Icons.get(Icons.CHALLENGE_ON), "WndRanking issues",
+                "3th slot now correctly shows in ranking."));
+
+        changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.ARMOR_HOLDER, null), "lol",
+                "_-_ Added the placeholder armor for new floors.\n"));
+
+        changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.RING_AMETHYST, null), Messages.get(RingOfWealth.class, "name"),
+                "If your ring by some reason are +20 or higher, they will still acts as +19."));
+
+        changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.SWIFTSWORD, null), "T6 Weapons",
+                "Now shows left exp to lvl up."));
+
         changes = new ChangeInfo("v1.2.2", false, null);
         changes.hardlight( Window.TITLE_COLOR );
         infos.add(changes);

@@ -55,8 +55,8 @@ public class CavesSuperLevel extends RegularLevel {
 
     @Override
     protected int specialRooms() {
-        //6 to 8, average 7
-        return 6+Random.chances(new float[]{4, 4, 2});
+        //4 to 6, average 5
+        return 4+Random.chances(new float[]{4, 4, 2});
     }
 	
 	@Override

@@ -40,7 +40,7 @@ public class DoubleKnifes extends T6Weapon {
 
 	@Override
 	public int defenseFactor( Char owner ) {
-		return 10+4*level();     //5 extra defence, plus 2 per level;
+		return 25+15*level();     //5 extra defence, plus 2 per level;
 	}
 	
 	public String statsInfo(){
