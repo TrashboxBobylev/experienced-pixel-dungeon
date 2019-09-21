@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 	package="com.trashboxbobylev.exppd.shatteredpixeldungeon"
 	android:versionCode="372"
-	android:versionName="ExpPD1.3"
+	android:versionName="ExpPD1.3K"
 	android:installLocation="auto">
 	
 	<uses-feature
