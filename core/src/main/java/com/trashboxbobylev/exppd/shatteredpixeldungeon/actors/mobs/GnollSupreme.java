@@ -45,7 +45,7 @@ public class GnollSupreme extends DepthyMob {
 	{
 		spriteClass = GnollTricksterSprite.class;
 
-		HP = HT = 4500;
+		HP = HT = 1500;
 
 		//at half quantity, see createLoot()
 		loot = Generator.Category.MISSILE;
@@ -56,7 +56,7 @@ public class GnollSupreme extends DepthyMob {
 
     @Override
     protected float attackDelay() {
-        return super.attackDelay()*0.1f;
+        return super.attackDelay()*0.33f;
     }
 
     @Override
@@ -89,7 +89,7 @@ public class GnollSupreme extends DepthyMob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange( 80, 120 );
+        return Random.NormalIntRange( 150, 200 );
     }
 
 	@Override
@@ -126,7 +126,7 @@ public class GnollSupreme extends DepthyMob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(40, 70);
+        return Random.NormalIntRange(80, 150);
     }
 
 }

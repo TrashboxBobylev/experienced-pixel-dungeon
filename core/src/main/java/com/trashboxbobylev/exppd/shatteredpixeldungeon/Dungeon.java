@@ -299,7 +299,6 @@ public class Dungeon {
                 break;
 		default:
 			level = new DeadEndLevel();
-			Statistics.deepestFloor--;
 		}
 		
 		level.create();

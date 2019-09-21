@@ -101,18 +101,20 @@ public class Yog extends Mob {
         }
 
         if (spawnPoints.size() > 0) {
-            Larva larva = new Larva();
-            larva.pos = Random.element( spawnPoints );
+            if (Dungeon.depth == 31 && Random.Float() < 0.33f) {
+                Larva larva = new Larva();
+                larva.pos = Random.element(spawnPoints);
 
-            if (Dungeon.depth == 31){
-                larva.HT = larva.HP = 18000;
-                larva.defenseSkill = 300;
+                if (Dungeon.depth == 31) {
+                    larva.HT = larva.HP = 18000;
+                    larva.defenseSkill = 300;
+                }
+                GameScene.add(larva);
+                Actor.addDelayed(new Pushing(larva, pos, larva.pos), -1);
             }
-            GameScene.add( larva );
-            Actor.addDelayed( new Pushing( larva, pos, larva.pos ), -1 );
         }
 
-		return super.act();
+        return super.act();
 	}
 
 	@Override

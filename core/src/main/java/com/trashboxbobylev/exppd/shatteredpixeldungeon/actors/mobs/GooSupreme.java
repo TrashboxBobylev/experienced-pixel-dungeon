@@ -48,10 +48,11 @@ import com.watabou.utils.Bundle;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
-public class GooSupreme extends Mob {
+public class GooSupreme extends DepthyMob {
 
 	{
-		HP = HT = 10000;
+		HP = HT = 4000;
+        EXP = 75 * (26 + Dungeon.depth - 52);
 		spriteClass = GooSprite.class;
 
 		properties.add(Property.DEMONIC);
@@ -63,7 +64,7 @@ public class GooSupreme extends Mob {
 	@Override
 	public int damageRoll() {
 		int min = 1;
-		int max = (HP*2 <= HT) ? 300 : 150;
+		int max = (HP*2 <= HT) ? 800 : 250;
 		if (pumpedUp > 0) {
 			pumpedUp = 0;
 			PathFinder.buildDistanceMap( pos, BArray.not( Dungeon.level.solid, null ), 2 );
@@ -72,7 +73,7 @@ public class GooSupreme extends Mob {
 					CellEmitter.get(i).burst(ElmoParticle.FACTORY, 10);
 			}
 			Sample.INSTANCE.play( Assets.SND_BURNING );
-			return Random.NormalIntRange( min*3, max*3 );
+			return Random.NormalIntRange( min*4, max*4 );
 		} else {
 			return Random.NormalIntRange( min, max );
 		}
@@ -85,7 +86,7 @@ public class GooSupreme extends Mob {
 
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(100, 150);
+		return Random.NormalIntRange(300, 600);
 	}
 
 	@Override
@@ -194,7 +195,6 @@ public class GooSupreme extends Mob {
 	
 	@Override
 	public void move( int step ) {
-		Dungeon.level.seal();
 		super.move( step );
 	}
 

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 	package="com.trashboxbobylev.exppd.shatteredpixeldungeon"
-	android:versionCode="371"
-	android:versionName="ExpPD1.2.3"
+	android:versionCode="372"
+	android:versionName="ExpPD1.3"
 	android:installLocation="auto">
 	
 	<uses-feature

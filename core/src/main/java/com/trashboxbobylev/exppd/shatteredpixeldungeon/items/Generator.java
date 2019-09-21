@@ -328,9 +328,10 @@ public class Generator {
                     NinjaSword.class,
                     DoubleKnifes.class,
                     Halberd.class,
-                    Jjango.class
+                    Jjango.class,
+                    CobaltScythe.class
             };
-            WEP_T6.probs = new float[]{ 6, 5, 5, 5};
+            WEP_T6.probs = new float[]{ 5, 5, 5, 5, 5};
 			
 			//see Generator.randomArmor
 			ARMOR.classes = new Class<?>[]{
@@ -377,7 +378,7 @@ public class Generator {
 			MIS_T5.probs = new float[]{ 4, 3 };
 
             MIS_T6.classes = new Class<?>[]{
-                    CobaltScythe.class
+                    ThrowingStone.class
             };
             MIS_T6.probs = new float[]{ 4 };
 			

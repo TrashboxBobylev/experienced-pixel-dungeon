@@ -52,6 +52,7 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.SnipersMark;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Vertigo;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Weakness;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.mobs.Mob;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.mobs.Statue;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.mobs.npcs.NPC;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.effects.CellEmitter;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.effects.CheckedCell;
@@ -64,6 +65,7 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.Heap;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.Heap.Type;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.Item;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.KindOfWeapon;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.armor.ClassArmor;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.armor.glyphs.AntiMagic;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.armor.glyphs.Viscosity;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.artifacts.*;
@@ -713,7 +715,7 @@ public class Hero extends Char {
 			
 			Heap heap = Dungeon.level.heaps.get( pos );
 			if (heap != null) {
-                if (Dungeon.hero.lvl > 60)
+                if (Dungeon.hero.lvl > 50)
                     while (!heap.isEmpty()) {
                         heap = Dungeon.level.heaps.get( pos );
                         pickupItemFromHeap(heap);
@@ -908,7 +910,7 @@ public class Hero extends Char {
 		int stairs = action.dst;
 		if (pos == stairs && pos == Dungeon.level.entrance) {
 			
-			if (Dungeon.depth == 1) {
+			if (Dungeon.depth == 1 && Statistics.deepestFloor >= 32) {
 				
 				if (belongings.getItem( Amulet.class ) == null) {
 					GameScene.show( new WndMessage( Messages.get(this, "leave") ) );
@@ -1276,7 +1278,7 @@ public class Hero extends Char {
         int bonusMaxLevel = 0;
         ExpBelt.ExpObtain buff = Dungeon.hero.buff(ExpBelt.ExpObtain.class);
         if (buff != null && source != PotionOfExperience.class){
-            expMod += (buff.itemLevel()+1)* (buff.itemLevel() > 50 ? 2.0f: 0.2f);
+            expMod += (buff.itemLevel()+1)* (buff.itemLevel() > 100 ? 0.8f: 0.2f);
             bonusMaxLevel += 2*(buff.itemLevel()+1);
             if (buff.isCursed()){
                 expMod = 0f;
@@ -1312,6 +1314,7 @@ public class Hero extends Char {
 				if (i instanceof CobaltScythe) ((CobaltScythe) i).gainExp(exp);
 			}
 			if (belongings.weapon instanceof T6Weapon) ((T6Weapon) belongings.weapon).gainExp(exp);
+            if (belongings.armor instanceof ClassArmor) ((ClassArmor) belongings.armor).gainExp(exp);
 		}
 
 

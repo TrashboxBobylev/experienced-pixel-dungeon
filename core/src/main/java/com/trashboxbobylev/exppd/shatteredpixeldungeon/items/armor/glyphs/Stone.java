@@ -21,6 +21,7 @@
 
 package com.trashboxbobylev.exppd.shatteredpixeldungeon.items.armor.glyphs;
 
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.Dungeon;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.Char;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.armor.Armor;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.sprites.ItemSprite;
@@ -46,6 +47,7 @@ public class Stone extends Armor.Glyph {
 		
 		//75% of dodge chance is applied as damage reduction
 		hitChance = (1f + 3f*hitChance)/4f;
+		if (Dungeon.depth > 26) hitChance /= 20f;
 		
 		damage = (int)Math.ceil(damage * hitChance);
 		

@@ -137,6 +137,42 @@ public class ChangesScene extends PixelScene {
         changes.hardlight( Window.TITLE_COLOR );
         infos.add(changes);
 
+        changes = new ChangeInfo("v1.3", false, null);
+        changes.hardlight( Window.TITLE_COLOR );
+        infos.add(changes);
+
+        changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.MASTERY ,new ItemSprite.Glowing(0x5EA4E0)), "Developer's Commentary",
+                "I think,  that it will be last update. Thanks for support on this week, that week was fun.\n\nNow, I'm going to continue working on Summoning Pixel Dungeon, that I'm consider as more adequate project, I want to polish them more. ExpPD is fun, but meant to be joke, non-serious, not balanced. I didn't excepted to work on them for long time.\n\nAnd because of this mod, I lost great amount of time, for making Cave Story's modding contest mod, for making Summoning PD, for learning, just to make joke fork, that doesn't offer a much quality.\n\nI hope that you will understand and forgive me, my dear supreme rat punchers.\n\nBye, bye!\nTrashbox Bobylev, 21.09.2019"));
+
+        changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.AMULET ,null), "The game completion",
+                "Now you need to beat Yog on depth 31 and enter SCP-682's depths to beat the game in both ways."));
+
+        changes.addButton(new ChangeButton(new Image(Assets.RAT, 0, 0, 15, 16), "New monsters changes",
+                "Most of monsters were rebalanced to make them more tough, but less annoying.  You also do not get luducious amount of exp anymore."));
+
+        changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.WAND_MAGIC_MISSILE ,null), "Wands changing",
+                "Wands in new depths now grows up with player's level, making them more viable for new enemies."));
+
+        changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.WAND_MAGIC_MISSILE ,null), "T6 weapons changes",
+                "_-_ Now their experience requirement increases across upgrading, so their growing are slower.\n"+
+                                        "_-_ Now do not lose enchantment after upgrading.\n"+
+                                        "_-_ Now Cobalt Scythe doesn't broke the reality, can be enchanted, can be augmented and appears as regular weapon.\n"+
+                                        "_-_ Jian-go were reworked to give bleeding instead of accuracy.\n"));
+
+        changes.addButton( new ChangeButton( Icons.get(Icons.DEPTH), "New chapter changes",
+                "_-_ The amount of monsters were reduced.\n"+
+                                        "_-_ Depth 31 doesn't require Ethereal Chains to enter the arena.\n"+
+                                        "_-_ Base dungeon mobs do not longer appear."));
+
+        changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.ARMOR_PLATE, new ItemSprite.Glowing(0x222222)), "Stone glyph",
+                "The stone glyph on new depths was nerfed to prevent insane evasion stat an broken."));
+
+        changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.ARMOR_WARRIOR), "Class-specific armor",
+                "Now grows in power at same rate as tier 6 weapons."));
+
+        changes.addButton(new ChangeButton(new Image(Assets.YOG, 0, 0, 19, 18), Messages.get(Yog.class, "name"),
+                "Yog on depth 31 spawns less lavra to make depth an less flooden of mobs."));
+
         changes = new ChangeInfo("v1.2.3", false, null);
         changes.hardlight( Window.TITLE_COLOR );
         infos.add(changes);

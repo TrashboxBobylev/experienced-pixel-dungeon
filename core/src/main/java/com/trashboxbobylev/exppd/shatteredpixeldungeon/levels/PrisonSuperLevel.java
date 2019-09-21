@@ -86,7 +86,7 @@ public class PrisonSuperLevel extends RegularLevel {
 
     @Override
     public int nMobs() {
-        return 40 + Dungeon.depth % 5 + Random.Int(5);
+        return 12 + Dungeon.depth % 5 + Random.Int(5);
     }
 
     @Override

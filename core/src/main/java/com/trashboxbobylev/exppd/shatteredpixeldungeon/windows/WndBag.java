@@ -46,6 +46,7 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.wands.Wand;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.SpiritBow;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.MeleeWeapon;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.Boomerang;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.CobaltScythe;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.MissileWeapon;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.messages.Messages;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.plants.Plant.Seed;
@@ -391,9 +392,9 @@ public class WndBag extends WndTabbed {
 						mode == Mode.UNCURSABLE && ScrollOfRemoveCurse.uncursable(item) ||
 						mode == Mode.CURSABLE && ((item instanceof EquipableItem && !(item instanceof MissileWeapon)) || item instanceof Wand) ||
 						mode == Mode.QUICKSLOT && (item.defaultAction != null) ||
-						mode == Mode.WEAPON && (item instanceof MeleeWeapon || item instanceof Boomerang) ||
+						mode == Mode.WEAPON && (item instanceof MeleeWeapon || item instanceof Boomerang || item instanceof CobaltScythe) ||
 						mode == Mode.ARMOR && (item instanceof Armor) ||
-						mode == Mode.ENCHANTABLE && (item instanceof MeleeWeapon || item instanceof SpiritBow || item instanceof Armor) ||
+						mode == Mode.ENCHANTABLE && (item instanceof MeleeWeapon || item instanceof SpiritBow || item instanceof Armor || item instanceof CobaltScythe) ||
 						mode == Mode.WAND && (item instanceof Wand) ||
 						mode == Mode.SEED && (item instanceof Seed) ||
 						mode == Mode.FOOD && (item instanceof Food) ||

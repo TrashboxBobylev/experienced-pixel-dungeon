@@ -28,6 +28,7 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Terror;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.hero.Hero;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.mobs.npcs.Imp;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.Generator;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.Item;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.KindOfWeapon;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.food.Food;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.Gauntlet;
@@ -44,7 +45,7 @@ public class MonkSupreme extends DepthyMob {
 	{
 		spriteClass = KingSprite.class;
 		
-		HP = HT = 12500;
+		HP = HT = 9000;
 		
 		loot = Generator.randomWeapon();
 		lootChance = 0.083f;
@@ -54,17 +55,17 @@ public class MonkSupreme extends DepthyMob {
 	
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( 120, 250 );
+		return Random.NormalIntRange( 300, 750 );
 	}
 	
 	@Override
 	protected float attackDelay() {
-		return super.attackDelay()*0.05f;
+		return super.attackDelay()*0.25f;
 	}
 	
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(100, 500);
+		return Random.NormalIntRange(500, 1750);
 	}
 	
 	@Override
@@ -94,7 +95,7 @@ public class MonkSupreme extends DepthyMob {
 				if (--hitsToDisarm == 0) {
 					hero.belongings.weapon = null;
 					Dungeon.quickslot.convertToPlaceholder(weapon);
-					weapon.updateQuickslot();
+					Item.updateQuickslot();
 					Dungeon.level.drop(weapon, hero.pos).sprite.drop();
 					GLog.w(Messages.get(this, "disarm", weapon.name()));
 				}

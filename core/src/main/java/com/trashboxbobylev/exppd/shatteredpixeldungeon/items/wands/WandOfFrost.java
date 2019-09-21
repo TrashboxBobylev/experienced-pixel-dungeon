@@ -46,11 +46,15 @@ public class WandOfFrost extends DamageWand {
 	}
 
 	public int min(int lvl){
-		return 2+lvl;
+        int i = 2 + lvl;
+        if (Dungeon.depth > 26) i += Dungeon.hero.lvl;
+        return i;
 	}
 
 	public int max(int lvl){
-		return 8+5*lvl;
+        int i = 8 + 5 * lvl;
+        if (Dungeon.depth > 26) i += Dungeon.hero.lvl;
+        return i;
 	}
 
 	@Override

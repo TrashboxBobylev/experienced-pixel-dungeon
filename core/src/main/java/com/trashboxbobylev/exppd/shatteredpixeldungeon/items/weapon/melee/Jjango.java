@@ -22,7 +22,12 @@
 package com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee;
 
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.Char;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Bleeding;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Buff;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.hero.Hero;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.mobs.Mob;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.sprites.ItemSpriteSheet;
+import com.watabou.utils.Random;
 
 public class Jjango extends T6Weapon {
 
@@ -37,6 +42,13 @@ public class Jjango extends T6Weapon {
 		return  4*(tier+1) +    //24 base, down from 30
 				lvl*(tier+1);   //scaling unchanged
 	}
+
+    @Override
+    public int proc(Char attacker, Char defender, int damage) {
+	    Buff.affect(defender, Bleeding.class).set(damage+level()*10);
+
+        return super.proc(attacker, defender, damage);
+    }
 
     @Override
     public float accuracyFactor(Char owner) {

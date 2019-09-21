@@ -4,6 +4,7 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.Dungeon;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.Actor;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.Char;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.hero.Hero;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.Item;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.T6Weapon;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.mechanics.Ballistica;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.messages.Messages;
@@ -17,8 +18,9 @@ public class CobaltScythe extends MissileWeapon {
     {
         image = ItemSpriteSheet.COBALT_SCYTHE;
 
+        stackable = false;
+
         tier = 6;
-        baseUses = 3;
     }
 
     @Override
@@ -28,6 +30,11 @@ public class CobaltScythe extends MissileWeapon {
     }
 
     public int exp;
+
+    @Override
+    public Item upgrade() {
+        return upgrade(true);
+    }
 
     @Override
     public void storeInBundle(Bundle bundle) {
@@ -43,18 +50,23 @@ public class CobaltScythe extends MissileWeapon {
 
     public void gainExp(int exp ) {
         this.exp += exp;
-        if (this.exp >= 500){
-            while (this.exp >= 500){
+        if (this.exp >= 250*level()){
+            while (this.exp >= 250*level()){
+                this.exp -= 250*level();
                 upgrade();
-                this.exp -= 500;
             }
         }
     }
 
     @Override
+    protected float durabilityPerUse() {
+        return 0;
+    }
+
+    @Override
     public String info() {
         String inf = super.info();
-        inf += " " + Messages.get(T6Weapon.class, "exp", 500 - exp);
+        inf += " " + Messages.get(T6Weapon.class, "exp", 250*level() - exp);
         return inf;
     }
 
@@ -67,7 +79,6 @@ public class CobaltScythe extends MissileWeapon {
 
     @Override
     public void rangedHit(Char enemy, int cell ) {
-        super.rangedHit(enemy, cell);
         circleBack(cell, curUser);
 
         //throws other chars around the center.
@@ -82,7 +93,6 @@ public class CobaltScythe extends MissileWeapon {
 
     @Override
     protected void rangedMiss( int cell ) {
-        super.rangedMiss(cell);
         circleBack( cell, curUser );
     }
 
@@ -95,4 +105,15 @@ public class CobaltScythe extends MissileWeapon {
             Dungeon.level.drop( this, owner.pos ).sprite.drop();
         }
     }
+
+    @Override
+    public Item upgrade(boolean enchant ) {
+        super.upgrade( enchant );
+
+        updateQuickslot();
+
+        return this;
+    }
+
+
 }

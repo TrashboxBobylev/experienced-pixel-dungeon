@@ -24,6 +24,8 @@ package com.trashboxbobylev.exppd.shatteredpixeldungeon.items.armor;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Invisibility;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.hero.Hero;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.BrokenSeal;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.Item;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.T6Weapon;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.messages.Messages;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.utils.GLog;
 import com.watabou.utils.Bundle;
@@ -43,8 +45,25 @@ abstract public class ClassArmor extends Armor {
 	}
 
 	private int armorTier;
-	
-	public ClassArmor() {
+
+    public int exp;
+
+    public void gainExp(int exp ) {
+        this.exp += exp;
+        if (this.exp >= 250*level()){
+            while (this.exp >= 250*level()){
+                this.exp -= 250*level();
+                upgrade();
+            }
+        }
+    }
+
+    @Override
+    public Item upgrade() {
+        return upgrade(true);
+    }
+
+    public ClassArmor() {
 		super( 6 );
 	}
 	
@@ -86,6 +105,7 @@ abstract public class ClassArmor extends Armor {
 	public void storeInBundle( Bundle bundle ) {
 		super.storeInBundle( bundle );
 		bundle.put( ARMOR_TIER, armorTier );
+        bundle.put("exp", exp);
 	}
 
 	@Override
@@ -93,6 +113,7 @@ abstract public class ClassArmor extends Armor {
 		super.restoreFromBundle( bundle );
 		
 		armorTier = bundle.getInt( ARMOR_TIER );
+		exp = bundle.getInt("exp");
 	}
 	
 	@Override
@@ -123,6 +144,13 @@ abstract public class ClassArmor extends Armor {
 			
 		}
 	}
+
+    @Override
+    public String info() {
+        String inf = super.info();
+        inf += " " + Messages.get(T6Weapon.class, "exp", 250*level() - exp);
+        return inf;
+    }
 
 	abstract public void doSpecial();
 

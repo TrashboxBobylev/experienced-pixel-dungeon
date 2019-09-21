@@ -60,6 +60,7 @@ public class BrokenSeal extends Item {
 	public ArrayList<String> actions(Hero hero) {
 		ArrayList<String> actions =  super.actions(hero);
 		actions.add(AC_AFFIX);
+		actions.add(AC_CRUSH);
 		return actions;
 	}
 
@@ -141,7 +142,9 @@ public class BrokenSeal extends Item {
 
 		public synchronized int maxShield() {
 			if (armor != null && armor.isEquipped((Hero)target)) {
-				return 1 + armor.tier + armor.level();
+                int i = 1 + armor.tier + armor.level();
+                if (i > target.HT) i = target.HT;
+                return i;
 			} else {
 				return 0;
 			}

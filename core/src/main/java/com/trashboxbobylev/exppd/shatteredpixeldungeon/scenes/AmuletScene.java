@@ -24,6 +24,7 @@ package com.trashboxbobylev.exppd.shatteredpixeldungeon.scenes;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.Assets;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.Dungeon;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.GamesInProgress;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.Statistics;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.effects.Flare;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.effects.Speck;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.Amulet;
@@ -62,7 +63,7 @@ public class AmuletScene extends PixelScene {
             RedButton btnExit = new RedButton(Messages.get(this, "exit")) {
                 @Override
                 protected void onClick() {
-                    if (Dungeon.depth > 31) {
+                    if (Statistics.deepestFloor >= 32) {
                         Dungeon.win(Amulet.class);
                         Dungeon.deleteGame(GamesInProgress.curSlot, true);
                         Game.switchScene(RankingsScene.class);

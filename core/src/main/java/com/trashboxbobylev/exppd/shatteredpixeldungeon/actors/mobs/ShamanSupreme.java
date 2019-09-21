@@ -29,6 +29,7 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.mechanics.Ballistica;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.messages.Messages;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.sprites.CharSprite;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.sprites.ShamanSprite;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.sprites.ShamanSupremeSprite;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.utils.GLog;
 import com.watabou.noosa.Camera;
 import com.watabou.utils.Callback;
@@ -36,12 +37,12 @@ import com.watabou.utils.Random;
 
 public class ShamanSupreme extends DepthyMob implements Callback {
 
-	private static final float TIME_TO_ZAP	= 0.1f;
+	private static final float TIME_TO_ZAP	= 0.75f;
 	
 	{
-		spriteClass = ShamanSprite.class;
+		spriteClass = ShamanSupremeSprite.class;
 		
-		HP = HT = 9000;
+		HP = HT = 4000;
 		
 		loot = Generator.Category.SCROLL;
 		lootChance = 0.33f;
@@ -51,12 +52,12 @@ public class ShamanSupreme extends DepthyMob implements Callback {
 	
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( 80, 120 );
+		return Random.NormalIntRange( 150, 300 );
 	}
 
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(100, 140);
+		return Random.NormalIntRange(200, 400);
 	}
 	
 	@Override
@@ -81,7 +82,7 @@ public class ShamanSupreme extends DepthyMob implements Callback {
 			spend( TIME_TO_ZAP );
 			
 			if (hit( this, enemy, true )) {
-				int dmg = Random.NormalIntRange(3, 10);
+				int dmg = Random.NormalIntRange(250, 750);
 				if (Dungeon.level.water[enemy.pos] && !enemy.flying) {
 					dmg *= 1.5f;
 				}
@@ -109,7 +110,7 @@ public class ShamanSupreme extends DepthyMob implements Callback {
 
     @Override
     protected float attackDelay() {
-        return super.attackDelay()*0.2f;
+        return super.attackDelay()*0.5f;
     }
 	
 	@Override

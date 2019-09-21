@@ -53,11 +53,15 @@ public class WandOfLightning extends DamageWand {
 	ArrayList<Lightning.Arc> arcs = new ArrayList<>();
 
 	public int min(int lvl){
-		return 5+lvl;
+        int i = 5 + lvl;
+        if (Dungeon.depth > 26) i += Dungeon.hero.lvl;
+        return i;
 	}
 
 	public int max(int lvl){
-		return 10+5*lvl;
+        int i = 10 + 5 * lvl;
+        if (Dungeon.depth > 26) i += Dungeon.hero.lvl;
+        return i;
 	}
 	
 	@Override
@@ -69,7 +73,9 @@ public class WandOfLightning extends DamageWand {
 		if (Dungeon.level.water[bolt.collisionPos]) multipler = 1f;
 
 		int min = 5 + level();
+        if (Dungeon.depth > 26) min *= level()*level();
 		int max = 10 + 5*level();
+		if (Dungeon.depth > 26) max *= level()*level();
 
 		for (Char ch : affected){
 			processSoulMark(ch, chargesPerCast());

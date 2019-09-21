@@ -57,11 +57,15 @@ public class WandOfPrismaticLight extends DamageWand {
 	}
 
 	public int min(int lvl){
-		return 1+lvl;
+        int i = 1 + lvl;
+        if (Dungeon.depth > 26) i += Dungeon.hero.lvl;
+        return i;
 	}
 
 	public int max(int lvl){
-		return 5+3*lvl;
+        int i = 5 + 3 * lvl;
+        if (Dungeon.depth > 26) i += Dungeon.hero.lvl;
+        return i;
 	}
 
 	@Override

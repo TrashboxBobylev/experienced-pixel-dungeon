@@ -26,26 +26,26 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.sprites.AlbinoSprite;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.sprites.RatSprite;
 import com.watabou.utils.Random;
 
-public class RatSupreme extends Mob {
+public class RatSupreme extends DepthyMob {
 
 	{
 		spriteClass = AlbinoSprite.class;
 		
-		HP = HT = 5000;
+		HP = HT = 2000;
 	}
 	
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( 50, 95 );
+		return Random.NormalIntRange( 250, 500 );
 	}
 
     @Override
     protected float attackDelay() {
-        return super.attackDelay()*0.2f;
+        return super.attackDelay()*0.5f;
     }
 	
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(25, 40);
+		return Random.NormalIntRange(50, 90);
 	}
 }

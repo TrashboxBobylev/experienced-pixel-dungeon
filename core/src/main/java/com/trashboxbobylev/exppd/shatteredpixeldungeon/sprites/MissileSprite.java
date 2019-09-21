@@ -25,14 +25,7 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.Dungeon;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.Item;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.SpiritBow;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.Crossbow;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.Bolas;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.Boomerang;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.FishingSpear;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.Javelin;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.Shuriken;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.ThrowingKnife;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.ThrowingSpear;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.Trident;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.*;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.darts.Dart;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.tiles.DungeonTilemap;
 import com.watabou.noosa.Visual;
@@ -94,6 +87,7 @@ public class MissileSprite extends ItemSprite implements Tweener.Listener {
 		//720 is default
 		
 		ANGULAR_SPEEDS.put(Boomerang.class,     1440);
+        ANGULAR_SPEEDS.put(CobaltScythe.class,     2160);
 		ANGULAR_SPEEDS.put(Bolas.class,         1440);
 		
 		ANGULAR_SPEEDS.put(Shuriken.class,      2160);

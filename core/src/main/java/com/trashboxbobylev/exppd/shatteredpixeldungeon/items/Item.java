@@ -32,6 +32,7 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.hero.Hero;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.effects.Speck;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.bags.Bag;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.Boomerang;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.CobaltScythe;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.journal.Catalog;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.mechanics.Ballistica;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.messages.Messages;
@@ -105,6 +106,7 @@ public class Item implements Bundlable {
 			GameScene.pickUp( this, hero.pos );
 			Sample.INSTANCE.play( Assets.SND_ITEM );
 			if (hero.lvl < 50) hero.spendAndNext(  TIME_TO_PICK_UP );
+			else hero.spendAndNext(  0.001f );
 			return true;
 			
 		} else {
@@ -250,7 +252,7 @@ public class Item implements Bundlable {
 		} else
 		if (quantity == 1) {
 
-			if (stackable || this instanceof Boomerang){
+			if (stackable || this instanceof Boomerang || this instanceof CobaltScythe){
 				Dungeon.quickslot.convertToPlaceholder(this);
 			}
 

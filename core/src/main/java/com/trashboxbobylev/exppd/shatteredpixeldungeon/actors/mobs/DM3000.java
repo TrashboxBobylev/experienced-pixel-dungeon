@@ -56,19 +56,19 @@ public class DM3000 extends DepthyMob {
 	{
 		spriteClass = DM300Sprite.class;
 		
-		HP = HT = 30000;
+		HP = HT = 8000;
 
 		properties.add(Property.INORGANIC);
 	}
 	
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( 200, 500 );
+		return Random.NormalIntRange( 620, 1310 );
 	}
 	
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(200, 400);
+		return Random.NormalIntRange(450, 800);
 	}
 	
 	@Override

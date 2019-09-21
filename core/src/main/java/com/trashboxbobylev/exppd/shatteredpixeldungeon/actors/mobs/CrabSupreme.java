@@ -34,7 +34,7 @@ public class CrabSupreme extends DepthyMob {
 	{
 		spriteClass = CrabSprite.class;
 		
-		HP = HT = 6000;
+		HP = HT = 3000;
 		baseSpeed = 3f;
 		
 		loot = new MysteryMeat();
@@ -43,7 +43,7 @@ public class CrabSupreme extends DepthyMob {
 	
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( 100, 150 );
+		return Random.NormalIntRange( 250, 450 );
 	}
 
     @Override
@@ -58,7 +58,7 @@ public class CrabSupreme extends DepthyMob {
 
     @Override
     protected float attackDelay() {
-        return super.attackDelay()*0.15f;
+        return super.attackDelay()*0.25f;
     }
 
     @Override

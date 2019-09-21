@@ -23,7 +23,7 @@ public class DepthyMob extends Mob {
 
         viewDistance = 12;
 
-        EXP = 500 * (26 + Dungeon.depth - 52);
+        EXP = 35 * (26 + Dungeon.depth - 52);
 
         immunities.add(Terror.class);
         immunities.add(Corruption.class);
@@ -49,7 +49,7 @@ public class DepthyMob extends Mob {
     @Override
     public int defenseSkill( Char enemy ) {
         boolean seen = (enemySeen && enemy.invisible == 0);
-        if (enemy == Dungeon.hero && !Dungeon.hero.canSurpriseAttack() || Dungeon.hero.lvl >= 200) seen = true;
+        if (enemy == Dungeon.hero && !Dungeon.hero.canSurpriseAttack() || Dungeon.hero.lvl <= 200) seen = true;
         if ( seen
                 && paralysed == 0
                 && !(alignment == Alignment.ALLY && enemy == Dungeon.hero)) {

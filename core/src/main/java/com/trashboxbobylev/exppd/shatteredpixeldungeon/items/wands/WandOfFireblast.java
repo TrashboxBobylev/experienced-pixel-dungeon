@@ -55,12 +55,16 @@ public class WandOfFireblast extends DamageWand {
 
 	//1x/2x/3x damage
 	public int min(int lvl){
-		return (1+lvl) * chargesPerCast();
+        int i = (1 + lvl) * chargesPerCast();
+        if (Dungeon.depth > 26) i += Dungeon.hero.lvl;
+        return i;
 	}
 
 	//1x/2x/3x damage
 	public int max(int lvl){
-		return (6+2*lvl) * chargesPerCast();
+        int i = (6 + 2 * lvl) * chargesPerCast();
+        if (Dungeon.depth > 26) i += Dungeon.hero.lvl;
+        return i;
 	}
 
 	//the actual affected cells

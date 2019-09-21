@@ -163,16 +163,16 @@ public class Bestiary {
 						Scorpio.class, Scorpio.class, Scorpio.class));
             case 27:
                 //3x rat, 3x gnoll
-                return new ArrayList<>(Arrays.asList(RatSupreme.class, RatSupreme.class,
+                return new ArrayList<Class<? extends Mob>>(Arrays.asList(RatSupreme.class, RatSupreme.class,
                         GnollSupreme.class, GnollSupreme.class, CrabSupreme.class));
             case 28:
                 //3x skeleton, 1x thief, 1x swarm
-                return new ArrayList<>(Arrays.asList(BanditSupreme.class, BanditSupreme.class, ShamanSupreme.class, ShamanSupreme.class, Skeleton.class));
+                return new ArrayList<Class<? extends Mob>>(Arrays.asList(BanditSupreme.class, BanditSupreme.class, ShamanSupreme.class, ShamanSupreme.class));
             case 29:
                 //3x skeleton, 1x thief, 1x swarm
-                return new ArrayList<>(Arrays.asList(GooSupreme.class, GooSupreme.class, GooSupreme.class, DM3000.class, Brute.class));
+                return new ArrayList<Class<? extends Mob>>(Arrays.asList(GooSupreme.class, GooSupreme.class, GooSupreme.class, DM3000.class));
             case 30:
-                return new ArrayList<>(Arrays.asList(MonkSupreme.class, Eye.class, GooSupreme.class, Warlock.class, CrabSupreme.class));
+                return new ArrayList<Class<? extends Mob>>(Arrays.asList(MonkSupreme.class, BanditSupreme.class, GooSupreme.class, DM3000.class, ShamanSupreme.class, GnollSupreme.class));
             case 31:
                 return new ArrayList<Class<? extends Mob>>(Arrays.asList(SCP682.class));
         }
