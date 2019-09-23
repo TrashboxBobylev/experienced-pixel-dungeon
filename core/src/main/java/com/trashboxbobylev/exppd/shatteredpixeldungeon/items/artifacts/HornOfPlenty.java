@@ -170,20 +170,15 @@ public class HornOfPlenty extends Artifact {
 	}
 	
 	public void gainFoodValue( Food food ){
-		if (level() >= 10) return;
+		if (level() >= Integer.MAX_VALUE) return;
 		
 		storedFoodEnergy += food.energy;
 		if (storedFoodEnergy >= Hunger.HUNGRY){
 			int upgrades = storedFoodEnergy / (int)Hunger.HUNGRY;
-			upgrades = Math.min(upgrades, 10 - level());
+			upgrades = Math.min(upgrades, Integer.MAX_VALUE - level());
 			upgrade(upgrades);
 			storedFoodEnergy -= upgrades * Hunger.HUNGRY;
-			if (level() == 10){
-				storedFoodEnergy = 0;
-				GLog.p( Messages.get(this, "maxlevel") );
-			} else {
-				GLog.p( Messages.get(this, "levelup") );
-			}
+			GLog.p( Messages.get(this, "levelup") );
 		} else {
 			GLog.i( Messages.get(this, "feed") );
 		}

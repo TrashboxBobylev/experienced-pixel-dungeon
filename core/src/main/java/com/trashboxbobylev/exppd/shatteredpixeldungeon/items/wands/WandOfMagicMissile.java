@@ -45,7 +45,7 @@ public class WandOfMagicMissile extends DamageWand {
 
 	public int max(int lvl){
         int i = 8 + 2 * lvl;
-        if (Dungeon.depth > 26) i += Dungeon.hero.lvl;
+        if (Dungeon.depth > 26) i += Dungeon.hero.lvl*3;
         return i;
 	}
 	

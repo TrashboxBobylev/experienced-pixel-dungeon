@@ -36,7 +36,7 @@ public class RatSupreme extends DepthyMob {
 	
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( 250, 500 );
+		return Random.NormalIntRange( 125, 250 );
 	}
 
     @Override

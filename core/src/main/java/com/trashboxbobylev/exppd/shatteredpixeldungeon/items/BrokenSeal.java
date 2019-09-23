@@ -60,7 +60,6 @@ public class BrokenSeal extends Item {
 	public ArrayList<String> actions(Hero hero) {
 		ArrayList<String> actions =  super.actions(hero);
 		actions.add(AC_AFFIX);
-		actions.add(AC_CRUSH);
 		return actions;
 	}
 
@@ -131,6 +130,7 @@ public class BrokenSeal extends Item {
 		}
 		
 		public synchronized void supercharge(int maxShield){
+		    if (maxShield > target.HT) maxShield = target.HT;
 			if (maxShield > shielding()){
 				setShield(maxShield);
 			}

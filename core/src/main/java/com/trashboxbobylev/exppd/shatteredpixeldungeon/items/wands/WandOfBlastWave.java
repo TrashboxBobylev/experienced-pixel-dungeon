@@ -61,7 +61,7 @@ public class WandOfBlastWave extends DamageWand {
 
 	public int max(int lvl){
         int i = 5 + 3 * lvl;
-        if (Dungeon.depth > 26) i += Dungeon.hero.lvl;
+        if (Dungeon.depth > 26) i += Dungeon.hero.lvl*3;
         return i;
 	}
 

@@ -289,8 +289,15 @@ public class InterlevelScene extends PixelScene {
 				else if (error.getMessage() != null &&
 						error.getMessage().equals("old save")) errorMsg = Messages.get(this, "io_error");
 
-				else throw new RuntimeException("fatal error occured while moving between floors. " +
-							"Seed:" + Dungeon.seed + " depth:" + Dungeon.depth, error);
+				else {
+                    String s = "";
+                    for (StackTraceElement t : error.getStackTrace()){
+                        s += "\n";
+                        s += t.toString();
+                    }
+				    errorMsg = "fatal error occured while moving between floors. " +
+                            "Seed:" + Dungeon.seed + " depth:" + Dungeon.depth + "\n\n" + s;
+                }
 
 				add( new WndError( errorMsg ) {
 					public void onBackPressed() {

@@ -172,24 +172,30 @@ public class Yog extends Mob {
 	@Override
 	public void die( Object cause ) {
 
+	    int leftYogs = 0;
 	    for (Mob mob : (Iterable<Mob>)Dungeon.level.mobs.clone()){
-	        if (mob instanceof Yog && mob != this) return;
+	        if (mob instanceof Yog) leftYogs++;
         }
 
-		for (Mob mob : (Iterable<Mob>)Dungeon.level.mobs.clone()) {
-			if (mob instanceof BurningFist || mob instanceof RottingFist) {
-				mob.die( cause );
-			}
-		}
-		
-		GameScene.bossSlain();
-		Dungeon.level.drop( new SkeletonKey( Dungeon.depth ), pos ).sprite.drop();
-		super.die( cause );
-		
-		yell( Messages.get(this, "defeated") );
-	}
-	
-	@Override
+        if (leftYogs == 1) death(cause);
+
+        super.die( cause );
+    }
+
+    private void death(Object cause) {
+        for (Mob mob : (Iterable<Mob>) Dungeon.level.mobs.clone()) {
+            if (mob instanceof BurningFist || mob instanceof RottingFist) {
+                mob.die( cause );
+            }
+        }
+
+        GameScene.bossSlain();
+        Dungeon.level.drop( new SkeletonKey( Dungeon.depth ), pos ).sprite.drop();
+
+        yell( Messages.get(this, "defeated") );
+    }
+
+    @Override
 	public void notice() {
 		super.notice();
 		BossHealthBar.assignBoss(this);

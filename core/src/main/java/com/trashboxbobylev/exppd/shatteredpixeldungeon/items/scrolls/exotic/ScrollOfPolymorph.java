@@ -63,42 +63,28 @@ public class ScrollOfPolymorph extends ExoticScroll {
         readAnimation();
 
 		for (Mob mob : Dungeon.level.mobs.toArray( new Mob[0] )) {
-			if (true) {
 				if (!mob.properties().contains(Char.Property.BOSS)
 						&& !mob.properties().contains(Char.Property.MINIBOSS) || (mob instanceof DepthyMob && Random.Float() < 0.1f)){
-					/*Sheep sheep = new Sheep();
-					sheep.lifespan = 10;
-					sheep.pos = mob.pos;
-
-					//awards half exp for each sheep-ified mob
-					//50% chance to round up, 50% to round down
-					if (mob.EXP % 2 == 1) mob.EXP += Random.Int(2);
-					mob.EXP /= 2;
-
-					mob.destroy();
-					mob.sprite.killAndErase();
-					Dungeon.level.mobs.remove(mob);
-					TargetHealthIndicator.instance.target(null);
-					GameScene.add(sheep);
-					CellEmitter.get(sheep.pos).burst(Speck.factory(Speck.WOOL), 4);*/
                     Mimic mimic = Mimic.spawnAt(mob.pos, new ArrayList<Item>());
                     if (mimic != null) {
-                        mimic.adjustStats(Dungeon.depth + 80);
+                        mimic.adjustStats(Dungeon.depth + Dungeon.hero.lvl);
                         mimic.HP = mimic.HT;
                         Sample.INSTANCE.play(Assets.SND_MIMIC, 1, 1, 0.5f);
-                        ArrayList<Item> reward = RingOfWealth.tryForBonusDrop(mob, 20);
-                        if (reward != null) mimic.items = reward;
+                        ArrayList<Item> reward = RingOfWealth.tryForBonusDrop(curUser, 20);
+                        if (reward != null) {
+                            mimic.items.addAll(reward);
+                        }
                         mob.destroy();
                         mob.sprite.killAndErase();
                         Dungeon.level.mobs.remove(mob);
                         TargetHealthIndicator.instance.target(null);
                         GameScene.add(mimic);
-                    } else {
-                        GLog.i(Messages.get(CursedWand.class, "nothing"));
                     }
 				}
-			}
 		}
+        setKnown();
+
+        readAnimation();
 		
 	}
 	

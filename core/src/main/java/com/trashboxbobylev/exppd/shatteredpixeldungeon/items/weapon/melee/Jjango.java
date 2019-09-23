@@ -39,8 +39,8 @@ public class Jjango extends T6Weapon {
 
 	@Override
 	public int max(int lvl) {
-		return  4*(tier+1) +    //24 base, down from 30
-				lvl*(tier+1);   //scaling unchanged
+		return  50 +    //50 base
+				9*lvl;   //+6
 	}
 
     @Override

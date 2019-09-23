@@ -130,12 +130,53 @@ public class ChangesScene extends PixelScene {
 		add( list );
 		
 		//**********************
-		//       v0.7.2
+		//       v0.7.2 and Experienced PD
 		//**********************
 
         ChangeInfo changes = new ChangeInfo("Experienced PD", true, "");
         changes.hardlight( Window.TITLE_COLOR );
         infos.add(changes);
+
+        changes = new ChangeInfo("v1.3.1", false, null);
+        changes.hardlight( Window.TITLE_COLOR );
+        infos.add(changes);
+
+        changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.COBALT_SCYTHE ,null), "Cobalt Scythe",
+                "The cobalt scythe were recoded to work like melee weapon, so I do not need to rewrite Generator code."));
+
+        changes.addButton( new ChangeButton( Icons.get(Icons.BUSY), "InterlevelScene debug",
+                "Added error window, when this damn inter-level scene crashes, so you do not need to root your phone for reporting issue."));
+
+        changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.WAND_MAGIC_MISSILE ,null), "Wands changing",
+                "Wands in new depths are buffed."));
+
+        changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.SWIFTSWORD ,null), "T6 weapons changing",
+                "Now are more powerful, but require more exp, and new depth enemies give less EXP."));
+
+        changes.addButton(new ChangeButton(new Image(Assets.RAT, 0, 0, 15, 16), "New monsters changes",
+                "Adjusted AI, so new monsters can't attack when you're invisible, and it can be surprised now.\n\n" +
+                                        "Reduced damage of depth 27 and 28 enemies."));
+
+        changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.ARTIFACT_CLOAK ,null), "Artifacts",
+                "Some artifacts now doesn't have the cap."));
+
+        changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.EXOTIC_ISAZ ,null), "Polymorph",
+                "Mimics scales with hero's level and drops additional drop, if RoW are equipped."));
+
+        changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.BOMB ,null), "Bombs",
+                "Buffed damage in post-Amulet depths."));
+
+        changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.BEACON ,null), "Merchant beacon",
+                "Doesn't get consumed now."));
+
+        changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.RING_AMETHYST ,null), "Ring of Wealth",
+                "The cap were increased by 1."));
+
+        changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.SEAL ,null), "Broken seal",
+                "Doesn't move through depths and do not overcharges hero by HP."));
+
+        changes.addButton(new ChangeButton(new Image(Assets.YOG, 0, 0, 19, 18), Messages.get(Yog.class, "name"),
+                "Yog on depth 31 now properly dies."));
 
         changes = new ChangeInfo("v1.3", false, null);
         changes.hardlight( Window.TITLE_COLOR );

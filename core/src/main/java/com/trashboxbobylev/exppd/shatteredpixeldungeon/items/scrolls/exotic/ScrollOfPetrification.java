@@ -55,15 +55,8 @@ public class ScrollOfPetrification extends ExoticScroll {
 		new Flare( 5, 32 ).color( 0xFF0000, true ).show( curUser.sprite, 2f );
 		Sample.INSTANCE.play( Assets.SND_READ );
 		Invisibility.dispel();
-
-        setKnown();
-
-        readAnimation();
 		
 		for (Mob mob : Dungeon.level.mobs.toArray( new Mob[0] )) {
-//			if (Dungeon.level.heroFOV[mob.pos]) {
-//				Buff.affect( mob, Paralysis.class, Paralysis.DURATION );
-//			}
             if (!mob.properties().contains(Char.Property.BOSS)
                     && !mob.properties().contains(Char.Property.MINIBOSS) || (mob instanceof DepthyMob && Random.Float() < 0.1f)) {
                 Statue statue = new Statue();
@@ -74,9 +67,11 @@ public class ScrollOfPetrification extends ExoticScroll {
                 Dungeon.level.mobs.remove(mob);
                 TargetHealthIndicator.instance.target(null);
                 GameScene.add(statue);
-            } else {
-                GLog.i(Messages.get(CursedWand.class, "nothing"));
             }
 		}
+
+        setKnown();
+
+        readAnimation();
 	}
 }

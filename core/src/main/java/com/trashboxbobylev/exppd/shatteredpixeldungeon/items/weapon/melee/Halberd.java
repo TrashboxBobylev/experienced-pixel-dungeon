@@ -35,8 +35,8 @@ public class Halberd extends T6Weapon {
 
 	@Override
 	public int max(int lvl) {
-		return  Math.round(6.67f*(tier+1)) +    //40 base, up from 30
-				lvl*Math.round(1.33f*(tier+1)); //+8 per level, up from +6
+		return  72 +    //72
+				18*lvl; //+18 per level
 	}
 
     @Override

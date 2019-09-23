@@ -52,7 +52,6 @@ public class GooSupreme extends DepthyMob {
 
 	{
 		HP = HT = 4000;
-        EXP = 75 * (26 + Dungeon.depth - 52);
 		spriteClass = GooSprite.class;
 
 		properties.add(Property.DEMONIC);

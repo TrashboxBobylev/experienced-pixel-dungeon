@@ -42,7 +42,7 @@ public class Statue extends Mob {
 	{
 		spriteClass = StatueSprite.class;
 
-		EXP = 0;
+		EXP = Dungeon.depth;
 		state = PASSIVE;
 		
 		properties.add(Property.INORGANIC);
@@ -54,7 +54,7 @@ public class Statue extends Mob {
 		super();
 		
 		do {
-			weapon = (MeleeWeapon) Generator.random(Generator.Category.WEAPON);
+			weapon = Generator.randomWeapon();
 		} while (weapon.cursed);
 		
 		weapon.enchant( Enchantment.random() );

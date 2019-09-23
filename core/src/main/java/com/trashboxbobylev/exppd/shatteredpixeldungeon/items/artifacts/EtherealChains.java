@@ -52,7 +52,7 @@ public class EtherealChains extends Artifact {
 	{
 		image = ItemSpriteSheet.ARTIFACT_CHAINS;
 
-		levelCap = 5;
+		levelCap = 10;
 		exp = 0;
 
 		charge = 5;
@@ -293,7 +293,7 @@ public class EtherealChains extends Artifact {
 			}
 			partialCharge += levelPortion*10f;
 
-			if (exp > 100+level()*50 && level() < levelCap){
+			if (exp > 100+level()*50){
 				exp -= 100+level()*50;
 				GLog.p( Messages.get(this, "levelup") );
 				upgrade();

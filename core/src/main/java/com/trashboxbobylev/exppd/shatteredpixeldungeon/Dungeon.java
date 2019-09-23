@@ -21,6 +21,7 @@
 
 package com.trashboxbobylev.exppd.shatteredpixeldungeon;
 
+import android.util.Log;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.Actor;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.Char;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.buffs.Amok;
@@ -50,9 +51,11 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.levels.rooms.special.Spec
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.mechanics.ShadowCaster;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.messages.Messages;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.scenes.GameScene;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.scenes.StartScene;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.ui.QuickSlotButton;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.utils.BArray;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.utils.DungeonSeed;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.windows.WndError;
 import com.watabou.noosa.Game;
 import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
@@ -413,6 +416,12 @@ public class Dungeon {
 		try {
 			saveAll();
 		} catch (IOException e) {
+            Game.scene().add( new WndError(Log.getStackTraceString(e) ) {
+                public void onBackPressed() {
+                    super.onBackPressed();
+                    Game.switchScene( StartScene.class );
+                }
+            } );
 			ShatteredPixelDungeon.reportException(e);
 			/*This only catches IO errors. Yes, this means things can go wrong, and they can go wrong catastrophically.
 			But when they do the user will get a nice 'report this issue' dialogue, and I can fix the bug.*/

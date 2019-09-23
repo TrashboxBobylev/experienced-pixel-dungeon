@@ -303,6 +303,18 @@ public class Hero extends Char {
 
 		return result;
 	}
+
+    public boolean shoot( Char enemy, CobaltScythe wep ) {
+
+        //temporarily set the hero's weapon to the missile weapon being used
+        KindOfWeapon equipped = belongings.weapon;
+        belongings.weapon = wep;
+        boolean result = attack( enemy );
+        Invisibility.dispel();
+        belongings.weapon = equipped;
+
+        return result;
+    }
 	
 	@Override
 	public int attackSkill( Char target ) {
@@ -323,7 +335,7 @@ public class Hero extends Char {
 		float accuracy = 1;
 		accuracy *= RingOfAccuracy.accuracyMultiplier( this );
 		
-		if (wep instanceof MissileWeapon){
+		if (wep instanceof MissileWeapon || wep instanceof CobaltScythe){
 			if (Dungeon.level.adjacent( pos, target.pos )) {
 				accuracy *= 0.5f;
 			} else {
@@ -392,7 +404,7 @@ public class Hero extends Char {
 
 		if (wep != null) {
 			dmg = wep.damageRoll( this );
-			if (!(wep instanceof MissileWeapon)) dmg += RingOfForce.armedDamageBonus(this);
+			if (!(wep instanceof MissileWeapon || wep instanceof CobaltScythe)) dmg += RingOfForce.armedDamageBonus(this);
 		} else {
 			dmg = RingOfForce.damageRoll(this);
 		}
@@ -991,7 +1003,7 @@ public class Hero extends Char {
 		
 		switch (subClass) {
 		case SNIPER:
-			if (wep instanceof MissileWeapon && !(wep instanceof SpiritBow.SpiritArrow)) {
+			if ((wep instanceof MissileWeapon || wep instanceof CobaltScythe) && !(wep instanceof SpiritBow.SpiritArrow)) {
 				Actor.add(new Actor() {
 					
 					{
@@ -1333,6 +1345,7 @@ public class Hero extends Char {
 				updateHT( true );
 				attackSkill++;
 				defenseSkill++;
+				if (lvl % 50 == 0) STR++;
 
 			} else {
 				Buff.prolong(this, Bless.class, 30f);

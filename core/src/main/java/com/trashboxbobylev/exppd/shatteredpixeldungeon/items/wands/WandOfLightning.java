@@ -60,7 +60,7 @@ public class WandOfLightning extends DamageWand {
 
 	public int max(int lvl){
         int i = 10 + 5 * lvl;
-        if (Dungeon.depth > 26) i += Dungeon.hero.lvl;
+        if (Dungeon.depth > 26) i += Dungeon.hero.lvl*3;
         return i;
 	}
 	
@@ -73,9 +73,9 @@ public class WandOfLightning extends DamageWand {
 		if (Dungeon.level.water[bolt.collisionPos]) multipler = 1f;
 
 		int min = 5 + level();
-        if (Dungeon.depth > 26) min *= level()*level();
+        if (Dungeon.depth > 26) min += Dungeon.hero.lvl;
 		int max = 10 + 5*level();
-		if (Dungeon.depth > 26) max *= level()*level();
+		if (Dungeon.depth > 26) max += Dungeon.hero.lvl*3;
 
 		for (Char ch : affected){
 			processSoulMark(ch, chargesPerCast());

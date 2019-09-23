@@ -33,7 +33,12 @@ public class NinjaSword extends T6Weapon {
 	}
 
     @Override
+    public int max(int lvl) {
+        return 60 + 12 * lvl;
+    }
+
+    @Override
     public float speedFactor(Char owner) {
-        return super.speedFactor(owner)*(Math.max(1f - 0.025f * level(), 0.075f));
+        return super.speedFactor(owner)*(Math.max(1f - 0.025f * level(), 0.025f));
     }
 }

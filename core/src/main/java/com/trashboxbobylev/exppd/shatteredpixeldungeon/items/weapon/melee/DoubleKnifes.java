@@ -34,18 +34,18 @@ public class DoubleKnifes extends T6Weapon {
 
 	@Override
 	public int max(int lvl) {
-		return (int) (2.5f*(tier+1) +    //12 base, down from 20
-                        lvl*(tier-1));   //+2 per level, down from +4
+		return 28 +    //28
+                        lvl*8;   //+8 per level
 	}
 
 	@Override
 	public int defenseFactor( Char owner ) {
-		return 25+15*level();     //5 extra defence, plus 2 per level;
+		return 25+15*level();     //25 extra defence, plus 15 per level;
 	}
 	
 	public String statsInfo(){
 		if (isIdentified()){
-			return Messages.get(this, "stats_desc", 5+2*level());
+			return Messages.get(this, "stats_desc", 25+15*level());
 		} else {
 			return Messages.get(this, "typical_stats_desc", 5);
 		}

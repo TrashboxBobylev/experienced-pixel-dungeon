@@ -49,9 +49,9 @@ public class CloakOfShadows extends Artifact {
 		exp = 0;
 		levelCap = 10;
 
-		charge = Math.min(level()+3, 10);
+		charge = Math.min(level()+3, Integer.MAX_VALUE);
 		partialCharge = 0;
-		chargeCap = Math.min(level()+3, 10);
+		chargeCap = Math.min(level()+3, Integer.MAX_VALUE);
 
 		defaultAction = AC_STEALTH;
 
@@ -149,7 +149,7 @@ public class CloakOfShadows extends Artifact {
 	
 	@Override
 	public Item upgrade() {
-		chargeCap = Math.min(chargeCap + 1, 10);
+		chargeCap = Math.min(chargeCap + 1, Integer.MAX_VALUE);
 		return super.upgrade();
 	}
 
@@ -257,7 +257,7 @@ public class CloakOfShadows extends Artifact {
 						exp += Math.round(10f * Math.pow(0.75f, -lvlDiffFromTarget));
 					}
 					
-					if (exp >= (level() + 1) * 50 && level() < levelCap) {
+					if (exp >= (level() + 1) * 50) {
 						upgrade();
 						exp -= level() * 50;
 						GLog.p(Messages.get(this, "levelup"));

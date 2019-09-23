@@ -28,9 +28,9 @@ public class T6Weapon extends MeleeWeapon {
 
     public void gainExp(int exp ) {
         this.exp += exp;
-        if (this.exp >= 250*level()){
-            while (this.exp >= 250*level()){
-                this.exp -= 250*level();
+        if (this.exp >= 350*level()){
+            while (this.exp >= 350*level()){
+                this.exp -= 350*level();
                 upgrade();
             }
         }
@@ -44,7 +44,7 @@ public class T6Weapon extends MeleeWeapon {
     @Override
     public String info() {
         String inf = super.info();
-        inf += " " + Messages.get(T6Weapon.class, "exp", 250*level() - exp);
+        inf += " " + Messages.get(T6Weapon.class, "exp", 350*level() - exp);
         return inf;
     }
 }

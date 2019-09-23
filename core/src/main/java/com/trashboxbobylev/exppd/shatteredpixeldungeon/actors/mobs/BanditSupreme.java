@@ -71,7 +71,7 @@ public class BanditSupreme extends DepthyMob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(250, 500);
+        return Random.NormalIntRange(225, 335);
     }
 
     @Override

@@ -52,7 +52,7 @@ public class ShamanSupreme extends DepthyMob implements Callback {
 	
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( 150, 300 );
+		return Random.NormalIntRange( 100, 300 );
 	}
 
 	@Override
@@ -82,7 +82,7 @@ public class ShamanSupreme extends DepthyMob implements Callback {
 			spend( TIME_TO_ZAP );
 			
 			if (hit( this, enemy, true )) {
-				int dmg = Random.NormalIntRange(250, 750);
+				int dmg = Random.NormalIntRange(125, 400);
 				if (Dungeon.level.water[enemy.pos] && !enemy.flying) {
 					dmg *= 1.5f;
 				}

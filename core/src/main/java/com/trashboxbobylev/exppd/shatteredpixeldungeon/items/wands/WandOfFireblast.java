@@ -63,7 +63,7 @@ public class WandOfFireblast extends DamageWand {
 	//1x/2x/3x damage
 	public int max(int lvl){
         int i = (6 + 2 * lvl) * chargesPerCast();
-        if (Dungeon.depth > 26) i += Dungeon.hero.lvl;
+        if (Dungeon.depth > 26) i += Dungeon.hero.lvl*3;
         return i;
 	}
 

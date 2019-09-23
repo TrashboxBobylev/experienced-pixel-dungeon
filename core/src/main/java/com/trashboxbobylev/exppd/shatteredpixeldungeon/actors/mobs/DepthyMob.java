@@ -9,6 +9,7 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.actors.hero.Hero;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.effects.Speck;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.effects.Surprise;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.effects.Wound;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.CobaltScythe;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.MissileWeapon;
 import com.watabou.utils.Random;
 
@@ -18,12 +19,11 @@ public class DepthyMob extends Mob {
         state = HUNTING;
         TIME_TO_WAKE_UP = 0f;
 
-
         defenseSkill = Dungeon.hero.attackSkill(this) + Random.NormalIntRange(-10, 10);
 
         viewDistance = 12;
 
-        EXP = 35 * (26 + Dungeon.depth - 52);
+        EXP = 25 * (Dungeon.depth - 26);
 
         immunities.add(Terror.class);
         immunities.add(Corruption.class);
@@ -43,12 +43,12 @@ public class DepthyMob extends Mob {
     }
 
     public boolean surprisedBy( Char enemy ){
-        return false;
+        return !enemySeen && enemy == Dungeon.hero && Dungeon.hero.lvl > 200;
     }
 
     @Override
     public int defenseSkill( Char enemy ) {
-        boolean seen = (enemySeen && enemy.invisible == 0);
+        boolean seen = (enemySeen && (enemy.invisible == 0 && Dungeon.hero.lvl >= 200));
         if (enemy == Dungeon.hero && !Dungeon.hero.canSurpriseAttack() || Dungeon.hero.lvl <= 200) seen = true;
         if ( seen
                 && paralysed == 0
@@ -62,7 +62,7 @@ public class DepthyMob extends Mob {
     @Override
     public int defenseProc( Char enemy, int damage ) {
 
-        if (enemy instanceof Hero && ((Hero) enemy).belongings.weapon instanceof MissileWeapon){
+        if (enemy instanceof Hero && (((Hero) enemy).belongings.weapon instanceof MissileWeapon || ((Hero) enemy).belongings.weapon instanceof CobaltScythe)){
             hitWithRanged = true;
         }
 

@@ -36,11 +36,7 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.bags.VelvetPouch;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.food.Food;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.food.SmallRation;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.potions.*;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.scrolls.ScrollOfIdentify;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.scrolls.ScrollOfLullaby;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.scrolls.ScrollOfMagicMapping;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.scrolls.ScrollOfRage;
-import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.scrolls.ScrollOfUpgrade;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.scrolls.*;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.wands.WandOfMagicMissile;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.SpiritBow;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.melee.Dagger;
@@ -126,7 +122,7 @@ public enum HeroClass {
 	private static void initWarrior( Hero hero ) {
 		(hero.belongings.weapon = new WornShortsword()).identify();
 		ThrowingStone stones = new ThrowingStone();
-		stones.quantity(3).collect();
+		stones.quantity(5).collect();
 		Dungeon.quickslot.setSlot(0, stones);
 
 		if (hero.belongings.armor != null){
@@ -165,7 +161,7 @@ public enum HeroClass {
 		hero.belongings.misc1.activate( hero );
 
 		ThrowingKnife knives = new ThrowingKnife();
-		knives.quantity(3).collect();
+		knives.quantity(5).collect();
 
 		Dungeon.quickslot.setSlot(0, cloak);
 		Dungeon.quickslot.setSlot(1, knives);

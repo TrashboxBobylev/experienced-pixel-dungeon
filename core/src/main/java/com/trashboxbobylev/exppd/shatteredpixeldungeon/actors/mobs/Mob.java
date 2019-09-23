@@ -52,6 +52,7 @@ import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.rings.Ring;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.rings.RingOfWealth;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.stones.StoneOfAggression;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.enchantments.Lucky;
+import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.CobaltScythe;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.items.weapon.missiles.MissileWeapon;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.levels.features.Chasm;
 import com.trashboxbobylev.exppd.shatteredpixeldungeon.messages.Messages;
@@ -182,7 +183,9 @@ public abstract class Mob extends Char {
 		
 		enemy = chooseEnemy();
 		
-		boolean enemyInFOV = enemy != null && enemy.isAlive() && fieldOfView[enemy.pos] && (enemy.invisible <= 0 || Dungeon.depth > 27);
+		boolean enemyInFOV = enemy != null && enemy.isAlive() && fieldOfView[enemy.pos] && (enemy.invisible <= 0);
+
+		if (Dungeon.hero.lvl < 200 && this instanceof DepthyMob) enemyInFOV = true;
 
 		return state.act( enemyInFOV, justAlerted );
 	}
@@ -335,7 +338,7 @@ public abstract class Mob extends Char {
 	}
 	
 	protected boolean canAttack( Char enemy ) {
-		return Dungeon.level.adjacent( pos, enemy.pos );
+		return Dungeon.level.adjacent( pos, enemy.pos ) && enemy.invisible <= 0;
 	}
 	
 	protected boolean getCloser( int target ) {
@@ -516,10 +519,10 @@ public abstract class Mob extends Char {
 	
 	@Override
 	public int defenseProc( Char enemy, int damage ) {
-		
-		if (enemy instanceof Hero && ((Hero) enemy).belongings.weapon instanceof MissileWeapon){
-			hitWithRanged = true;
-		}
+
+        if (enemy instanceof Hero && (((Hero) enemy).belongings.weapon instanceof MissileWeapon || ((Hero) enemy).belongings.weapon instanceof CobaltScythe)){
+            hitWithRanged = true;
+        }
 		
 		if ((!enemySeen || enemy.invisible > 0)
 				&& enemy == Dungeon.hero && Dungeon.hero.canSurpriseAttack()) {

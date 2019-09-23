@@ -43,7 +43,7 @@ public class CrabSupreme extends DepthyMob {
 	
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( 250, 450 );
+		return Random.NormalIntRange( 200, 300 );
 	}
 
     @Override

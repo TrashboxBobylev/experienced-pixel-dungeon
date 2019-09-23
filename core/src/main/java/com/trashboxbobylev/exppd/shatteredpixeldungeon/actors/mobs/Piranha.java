@@ -41,7 +41,7 @@ public class Piranha extends Mob {
 
 		baseSpeed = 2f;
 		
-		EXP = 0;
+		EXP = Dungeon.depth*2;
 		
 		loot = MysteryMeat.class;
 		lootChance = 1f;

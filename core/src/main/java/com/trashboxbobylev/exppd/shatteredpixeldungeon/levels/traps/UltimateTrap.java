@@ -68,7 +68,7 @@ public class UltimateTrap extends Trap {
 			final UltimateTrap trap = this;
 
             // kill the player
-            final int finalDmg = finalTarget.HP*-1;
+            final int finalDmg = finalTarget.HP;
 			
 			Actor.add(new Actor() {
 				

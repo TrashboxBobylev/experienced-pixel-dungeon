@@ -406,7 +406,9 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 	}
 	
 	public static void reportException( Throwable tr ) {
-		if (instance != null) instance.logException(tr);
+		if (instance != null) {
+		    instance.logException(tr);
+        }
 	}
 	
 	protected void logException( Throwable tr ){
